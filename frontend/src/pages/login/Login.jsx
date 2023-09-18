@@ -6,13 +6,13 @@ const Login = () => {
     <div className='Container-login'>
       <div className='main-box-login'>
         <div className='box-login'>
-        <div className='box-img'>
-          <img
-            src='/src/assets/logoSDU/Main-logo.png'
-            alt='Main-logo-SDU'
-            className='Main-logo-img'
-          />
-        </div>
+          <div className='box-img'>
+            <img
+              src='/src/assets/logoSDU/Main-logo.png'
+              alt='Main-logo-SDU'
+              className='Main-logo-img'
+            />
+          </div>
           <div className='box-input-login'>
             <h1 className='h1-login'>ACCOUNT LOGIN</h1>
             {/* input username */}
@@ -28,7 +28,7 @@ const Login = () => {
               className='input password-login'
             />
             <button className='button-login'>
-              <i class="fa-solid fa-circle-arrow-right"></i> 
+              <i class="IconButtonLogin fa-solid fa-circle-arrow-right"></i> 
               LOGIN
             </button>
           </div>

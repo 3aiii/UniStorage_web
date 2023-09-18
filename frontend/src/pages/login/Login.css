@@ -22,7 +22,7 @@
 }
 
 .box-login{
-    width: 513px;
+    width: fit-content;
 }
 
 .box-img{
@@ -95,6 +95,10 @@
 .button-login:hover{
     background: #fff;
     color: #9CDBFF;
+}
+
+.IconButtonLogin{
+    margin: 10px;
 }
 
 .ask-login{
