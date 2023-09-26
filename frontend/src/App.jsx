@@ -1,3 +1,4 @@
+import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import {
@@ -18,6 +19,14 @@ function App() {
         <Route
           path='/register'
           element={<Register/>}
+        />
+        <Route
+          path='/home'
+          element={<Home/>}
+        />
+        <Route
+          path='/favortie'
+          element={<Home/>}
         />
       </Routes>
     </BrowserRouter>

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: #9CDBFF;
 }
@@ -14,40 +14,50 @@
     align-items:start;
     background-color: #fff;
     border-radius: 10px;
-    width: 1183px;
-    height: 821px;
+    height: fit-content;
     border-radius: 20px;
     background: #FFF;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 46px ;
     text-align: center;
+    
+}
 
+.Main-logo-img-register{
+    width: 300px;
 }
 
 .h1-register{
     color: #58C3FF;
     text-align: center;
-    font-size: 48px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-top: 37px;
+    margin-top: 20px;
 }
 
 .box-input-register{
     display: flex;
-    margin-top: 37px;
-    margin-bottom: 55px;
+    margin: 20px 0px;
+}
+
+.list-input-first-col-register{
+    width: 400px;
+}
+
+.list-input-sec-col-register{
+    width: 400px;
 }
 
 .input-register{
-    width: 513px;
+    width: 380px;
     height: 60px;
     border-radius: 10px;
     border: 5px solid #9CDBFF;
     background: #FFF;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
-    font-size: 22px;
+    font-size: 18px;
     padding: 10px;
     color: #58C3FF;
     margin: 10px;
@@ -68,14 +78,13 @@
 }
 
 .button-register{
-    margin: 33px 0px;
     border-radius: 10px;
     background: #9CDBFF;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
-    width: 513px;
-    height: 60px;
+    width: 400px;
+    height: 50px;
     color: #fff;
-    font-size: 32px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

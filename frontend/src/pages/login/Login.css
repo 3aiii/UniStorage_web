@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: #9CDBFF;
 }
@@ -10,65 +10,65 @@
 .main-box-login{
     display: flex;
     justify-content: center;
-    align-items:start;
+    align-items:center;
     background-color: #fff;
     border-radius: 10px;
-    width: 732px;
-    height: 821px;
+    height: fit-content;
     border-radius: 20px;
     background: #FFF;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 46px 138px;
-}
-
-.box-login{
-    width: fit-content;
+    padding: 46px;
 }
 
 .box-img{
     text-align: center;
 }
 
+.Main-logo-img{
+    width: 300px;
+}
+
 .box-input-login{
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .h1-login{
     color: #58C3FF;
     text-align: center;
-    font-size: 48px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-top: 37px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .input{
-    width: 513px;
+    width: 400px;
     height: 60px;
     border-radius: 10px;
     border: 5px solid #9CDBFF;
     background: #FFF;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
-    font-size: 22px;
+    font-size: 18px;
     padding: 10px;
-    color: #58C3FF;
+    color: #58C3FF;   
+}
+
+.input.text-login{
+    margin-bottom: 20px;
 }
 
 .input:focus{
     outline: none;
 }
 
-.input.text-login{
-    margin-bottom: 33px;
-    margin-top: 33px;
-}
-
 .input::placeholder{
     color: #9CDBFF;
     font-family: Kanit;
-    font-size: 22px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -79,10 +79,10 @@
     border-radius: 10px;
     background: #9CDBFF;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
-    width: 513px;
-    height: 60px;
+    width: 400px;
+    height: 50px;
     color: #fff;
-    font-size: 32px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -106,14 +106,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 37px;
 }
 
 .p-login{
-    width: 460px;
+    width: 100%;
     color: rgba(143, 143, 143, 0.45);
     text-align: center;
-    font-size: 26px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -145,7 +144,7 @@
 .SignUp-login{
     margin-top: 20px;
     color: #9CDBFF;
-    font-size: 32px;
+    font-size: 26px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
