@@ -1,0 +1,22 @@
+.Container-SideBar{
+    flex: 4;
+    border-left: 1px solid #DEDEDE;
+}
+
+.Main-Box-SideBar{
+    position: sticky;
+    top: 0;
+    background: #fff;
+    margin: 5px 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.h1-TopFive{
+    border-bottom: 1px solid #DEDEDE;
+    font-size: 22px;
+    font-weight: 400;
+    padding: 10px 0px;
+    color: #686668;
+
+}

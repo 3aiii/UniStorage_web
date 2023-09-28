@@ -1,0 +1,107 @@
+.Main-Box-Post{
+    margin: 30px 0px;
+}
+
+
+
+/* Info User */
+.User-Date-Post{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Img-User-Post{
+    width: 42px;
+    height: 42px;
+    object-fit:  cover;
+}
+
+.h3-Post{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.line-Post{
+    height: 20px;
+    width: 2px;
+    background: #DEDEDE;
+}
+
+.span-Post{
+    color: #8C8C8C;
+}
+
+/* Info Post */
+.Info-Post{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.Info-H1AndP{
+    width: 500px;
+}
+
+.h1-Post{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 22px;
+    font-weight: 500;
+    margin : 5px 0px;
+}
+
+.p-Post{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    opacity: 0.8;
+    margin: 5px 0px;
+}
+
+.Img-Cover-Post{
+    object-fit:  cover;
+    width: 150px;
+    height: 150px;
+}
+
+
+/* Viewed-Post */
+.Viewed-Post{
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+    width: 500px;
+    margin-top: 20px;
+}
+
+.Viewed-btnAndView-Post{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Category-btn-Post{
+    background: #D9D9D9;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: 0.5s;
+    font-weight: 400;
+    font-size: 14px;
+    color: #111;
+}
+
+.Category-btn-Post:hover{
+    background: #D1D1D1;
+}
+
+.span-view-Post{
+    color: #868686;
+    font-size: 14px
+}

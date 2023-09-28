@@ -1,0 +1,27 @@
+.Category-Ul{
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.Category-li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:180px;
+    height: 60px;
+    cursor: pointer;
+    transition: 0.5ms;
+    font-size: 16px;
+    color: #686868;
+}
+
+.Category-li:first-child{
+    color: #111;
+    border-bottom: 1px solid;
+}
+
+.Category-li:hover{
+    color: #111;
+}

@@ -31,7 +31,7 @@ const NavBar = () => {
                     Upload
                 </Link>
                 <Link to='/favorite' className='link Favorite-NavBar'>
-                    <i class="IconFavorite fa-solid fa-heart"></i>
+                    <i className="IconFavorite fa-solid fa-heart"></i>
                 </Link>
                 <div className='Profile-NavBar'>
                     <img
