@@ -1,0 +1,168 @@
+.Container-Upload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Box-Main-Upload{
+    width: 1100px;
+}
+
+.h1-Upload{
+    text-align: center;
+    font-weight: 500;
+    border-bottom: 1px solid #DEDEDE;
+    padding: 10px 0px;
+}
+
+.Border-Main-Upload{
+    display: flex;   
+    justify-content: center;
+}
+
+.input-Main-Upload{
+    display: flex;
+    flex-direction: column;
+    color: #8c8c8c;
+}
+
+.lb{
+    color: #8C8C8C;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.inputmain{
+    width: 1000px;
+    height: 40px;
+    font-size: 16px;
+    background: #EDEDED;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding: 20px;
+    color: #8C8C8C;
+}
+
+.inputmain.Abstract{
+    height: 200px;
+}
+
+/* Sub upload*/
+.input-sub-upload{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 20px;
+    width: 1000px;
+
+}
+
+.lbsub{
+    display: flex;
+    flex-direction: column;
+    width: 310px;
+    
+}
+
+.lbsub label{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.inputsub{
+    border-radius: 30px;
+    background: #EDEDED;
+    outline: none;
+    border: none;
+    padding: 6px;
+}
+/* 
+.lbsub input[type='file']{
+    outline: none;
+    border-radius: 50px
+} */
+
+::-webkit-file-upload-button{
+    font-family: 'Kanit', sans-serif;
+    color: #8C8C8C;
+    background: #fff;
+    border: none;
+    border-radius: 30px;
+    width: 80px;
+    height: 30px;
+    font-size: 14px;
+}
+
+.inputsub.turnitin{
+    color: #8C8C8C;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.lb-p{
+    margin-top: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.lb-p span{
+    color: red;
+}
+
+.LearningHere{
+    color: #8C8C8C;
+    text-decoration: underline;
+}
+
+.inputsub.turnitin::placeholder{
+    color: #8c8c8c;
+
+}
+
+/* input sub and category */
+
+.input-sub-cat-submit{
+    display: flex;
+    justify-content: space-between  ;
+    align-items: end;
+    width: 1000px;
+    margin-top: 5px;
+    /* border: 1px solid; */
+}
+
+.input-options{
+    display: flex;
+    flex-direction: column;
+}
+
+.lb-cat{
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.inputsub.cat{
+    padding: 10px;
+    color: #8C8C8C; 
+    font-size: 14px;  
+}
+
+.btn-submit{
+    background: #9CDBFF;
+    color: #fff;
+    width: 160px;
+    font-size: 18px;
+    height: 40px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn-submit:hover{
+    background: #65c3f9;
+}

@@ -6,6 +6,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom"; 
+import Upload from "./pages/upload/Upload";
+import Favorite from "./pages/favorite/Favorite";
 
 function App() {
 
@@ -25,8 +27,12 @@ function App() {
           element={<Home/>}
         />
         <Route
-          path='/favortie'
-          element={<Home/>}
+          path='/favorite'
+          element={<Favorite/>}
+        />
+        <Route
+          path='/upload'
+          element={<Upload/>}
         />
       </Routes>
     </BrowserRouter>

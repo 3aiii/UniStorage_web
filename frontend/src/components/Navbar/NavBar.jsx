@@ -6,11 +6,13 @@ const NavBar = () => {
     <div className='Container-NavBar'>
         <div className='main-box-NavBar'>
             <div className='Logo-and-Search-box'>
-                <img
-                    src='/src/assets/logoSDU/Main-logo.png'
-                    alt='Main-logo-NavBar'
-                    className='Img-NavBar'
-                />
+                <Link to={'/home'}>
+                    <img
+                        src='/src/assets/logoSDU/Main-logo.png'
+                        alt='Main-logo-NavBar'
+                        className='Img-NavBar'
+                    />
+                </Link>
                 <div className='Search-Box'>
                     <i className="IconSearch fa-solid fa-magnifying-glass"></i>
                     <input
