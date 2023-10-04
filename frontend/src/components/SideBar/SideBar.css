@@ -7,16 +7,16 @@
     position: sticky;
     top: 0;
     background: #fff;
-    margin: 5px 20px;
-    border-radius: 10px;
+    margin: 0px 20px;
     padding: 10px;
 }
 
 .h1-TopFive{
     border-bottom: 1px solid #DEDEDE;
     font-size: 22px;
-    font-weight: 400;
-    padding: 10px 0px;
+    font-weight: 400;   
+    padding-top: 5px;
+    padding-bottom: 10px;
     color: #686668;
 
 }

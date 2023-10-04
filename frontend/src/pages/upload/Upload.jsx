@@ -1,6 +1,6 @@
 import './Upload.css'
 import NavBar from '../../components/Navbar/NavBar'
-import { Link } from 'react-router-dom'
+
 const Upload = () => {
   return (
       <div className='Container-Upload'>
@@ -42,17 +42,20 @@ const Upload = () => {
                                 max={100}
                                 placeholder='ข้อมูล turnitin 0 - 100'
                             />
-                            <p className='lb-p'><span>*หมายเหตุ</span> : เรียนรู้เพิ่มเติมเกี่ยวกับ turnitin เพิ่มเติมได้ <a className='link LearningHere' target='blank' href='https://w1.med.cmu.ac.th/library/files/Manual_Turnitin-for-Student.pdf'>ที่นี่</a></p>
+                            {/* <p className='lb-p'><span>*หมายเหตุ</span> : เรียนรู้เพิ่มเติมเกี่ยวกับ turnitin เพิ่มเติมได้ <a className='link LearningHere' target='blank' href='https://w1.med.cmu.ac.th/library/files/Manual_Turnitin-for-Student.pdf'>ที่นี่</a></p> */}
                         </div>
                     </div>
                     <div className='input-sub-cat-submit'>
                         <div className='input-options'>
                             <label className='lb-cat'>หมวดหมู่</label>
-                            <select className='inputsub cat' placeholder='Select your category please'>
-                                <option value={1}>Network</option>
-                                <option value={2}>Multimedia</option>
-                                <option value={3}>Artificial Intelligence</option>
-                            </select>
+                            <div className='box-select'>
+                                <select className='inputsub cat' placeholder='Select your category please'>
+                                    <option value={1}>Network</option>
+                                    <option value={2}>Multimedia</option>
+                                    <option value={3}>Artificial Intelligence</option>
+                                </select>
+                                <i className="IconArrow fa-solid fa-chevron-down"></i>
+                            </div>
                         </div>
                         <button className='btn-submit'>Upload</button>
                     </div>

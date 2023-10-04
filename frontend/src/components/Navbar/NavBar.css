@@ -125,3 +125,26 @@
     border-radius: 100%;
     padding: 8px;
 }
+
+.Logout-NavBar{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background: #EDEDED;
+    border-radius: 50px;
+    color: #8C8C8C;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    width: 100px;
+    height: 38px;
+    transition: 0.5s;
+}
+
+.Logout-NavBar:hover{
+    background: #D3D3D3;
+}
+
+.IconLogout{
+    margin-right: 5px;
+}

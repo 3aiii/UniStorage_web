@@ -2,8 +2,6 @@
     margin: 30px 0px;
 }
 
-
-
 /* Info User */
 .User-Date-Post{
     display: flex;
@@ -95,6 +93,7 @@
     font-weight: 400;
     font-size: 14px;
     color: #111;
+    outline: none;
 }
 
 .Category-btn-Post:hover{

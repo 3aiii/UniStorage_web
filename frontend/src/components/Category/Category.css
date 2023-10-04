@@ -3,6 +3,7 @@
     justify-content: space-evenly;
     list-style: none;
     border-bottom: 1px solid #DEDEDE;
+    position: relative;
 }
 
 .Category-li{
@@ -15,11 +16,14 @@
     transition: 0.5ms;
     font-size: 16px;
     color: #686868;
+    position: relative;
+    text-decoration: none;
 }
 
-.Category-li:first-child{
+
+.Category-li.active{
+    border-bottom: 1px solid #686868;
     color: #111;
-    border-bottom: 1px solid;
 }
 
 .Category-li:hover{

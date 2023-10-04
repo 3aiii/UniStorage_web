@@ -8,6 +8,7 @@ import {
 } from "react-router-dom"; 
 import Upload from "./pages/upload/Upload";
 import Favorite from "./pages/favorite/Favorite";
+import AdminDashBoard from "./pages/adminDashboard/AdminDashBoard";
 
 function App() {
 
@@ -33,6 +34,10 @@ function App() {
         <Route
           path='/upload'
           element={<Upload/>}
+        />
+        <Route
+          path='/adminDash'
+          element={<AdminDashBoard/>}
         />
       </Routes>
     </BrowserRouter>

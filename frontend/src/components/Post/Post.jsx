@@ -3,6 +3,14 @@ import {Link} from 'react-router-dom'
 
 
 const Post = () => {
+
+  // const handleFav = () =>{
+  //   const ToggleFav = document.getElementsByClassName('favorite-btn')
+    
+  //   Togg
+  // }
+
+  // console.log(ToggleFav);  
   return (
     <div className='Container-Post'>
         <div className='Main-Box-Post'>
@@ -46,8 +54,8 @@ const Post = () => {
                 512 view
               </span>
             </div>
-            <button className='favorite-btn' onClick={()=> console.log('Fav')}>
-              <i className="IconNoneFavorite fa-solid fa-heart"></i>
+            <button className='favorite-btn'>
+              <i className="IconNoneFavorite fa-solid fa-heart" id='IconFav'></i>
             </button>
           </div>
         </div>

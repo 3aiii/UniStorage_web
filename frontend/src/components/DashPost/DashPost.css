@@ -1,0 +1,71 @@
+.Box-DashPost{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0px 30px 0px;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.Info-DashPost{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.DashPost-img{
+    width: 42px;
+    height : 42px;
+    object-fit: cover;
+}
+
+.DashPost-user{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.DashPost-date{
+    color: #8c8c8c;
+}
+
+.DashPost-topic{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 500px;
+    height: 20px;
+}
+
+/* button */
+.action-DashPost{
+    display: flex;
+    gap: 10px;
+}
+
+.btn{
+    width: 42px;
+    height: 42px;
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 24px;
+    cursor: pointer;
+
+}
+
+.IconDashAdmin{
+    text-align: center;
+}
+
+.btn.download-pdf{
+    background: #D3D3D3;
+}
+
+.approve{
+    background: #B2FFAB;
+}
+
+.reject{
+    background: #FC8282;
+}

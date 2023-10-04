@@ -1,11 +1,16 @@
 import './Favorite.css'
 import NavBar from '../../components/Navbar/NavBar'
+import SideBar from '../../components/SideBar/SideBar'
+import Favorites from '../../components/Favorites/Favorites'
 
 const Favorite = () => {
   return (
-    <div className='Container-Favortie'>
+    <div className='Container-Favorite'>
         <NavBar/>
-        Favorite
+        <div className='box-Favorite'>
+          <Favorites />
+          <SideBar/>
+        </div>
     </div>
   )
 }

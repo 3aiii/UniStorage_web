@@ -1,0 +1,10 @@
+.Container-AdminDashBoard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Box-AdminDashBoard{
+    width: 1100px;
+}
