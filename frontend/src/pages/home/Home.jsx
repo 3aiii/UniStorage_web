@@ -8,7 +8,7 @@ const Home = () => {
     <div className='Container-Home'>
         <NavBar/>
         <div className='Main-Home'>
-          <Posts/>
+          <Posts/>  
           <SideBar/>
         </div>
     </div>

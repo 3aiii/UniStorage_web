@@ -17,6 +17,13 @@
 }
 
 .IconSearch{
+    position: absolute;
+    height: 2.625rem;
+    border-radius: 3.125rem;
+    top: 30%;
+    color: #979797;
+    margin-left: 10px;
+    font-size: 18px;
     margin: 6px 0px 0px 12px;
     text-align: center;
 }

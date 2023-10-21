@@ -8,7 +8,7 @@ const NavBar = () => {
         <div className='Container-NavBar'>
             <div className='main-box-NavBar'>
                 <div className='Logo-and-Search-box'>
-                    <Link to={'/home'}>
+                    <Link to={'/'}>
                         <img
                             src='/src/assets/logoSDU/Main-logo.png'
                             alt='Main-logo-NavBar'
@@ -16,7 +16,7 @@ const NavBar = () => {
                         />
                     </Link>
                     <div className='Search-Box'>
-                        <i className="IconSearch fa-solid fa-magnifying-glass"></i>
+                        <i className="IconSearchNavBar fa-solid fa-magnifying-glass"></i>
                         <input
                             type='text'
                             className='search-NavBar'

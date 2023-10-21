@@ -10,7 +10,7 @@ const SideBarTierList = () => {
                 alt='SideBarTierList-img'
                 className='SideBarTierList-img'
             />
-            <Link to='/home' className='link SideBarTierList-p'>
+            <Link to='/singlePage/2' className='link SideBarTierList-p'>
                 Lorem Ipsum is simply dummy text of the printing 
                 and typesetting industry. Lorem Ipsum has been
                 the industry's standard dummy text ever since 
