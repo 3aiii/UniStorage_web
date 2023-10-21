@@ -51,7 +51,7 @@
     border-radius: 10px;
     font-size: 24px;
     cursor: pointer;
-
+    transition: 0.5s;
 }
 
 .IconDashAdmin{
@@ -62,10 +62,23 @@
     background: #D3D3D3;
 }
 
+.btn.download-pdf:hover{
+    background: #b7b7b7;
+
+}
+
 .approve{
     background: #B2FFAB;
 }
 
+.approve:hover{
+    background: #7eff72;
+}
+
 .reject{
     background: #FC8282;
+}
+
+.reject:hover{
+    background: #ff6161;
 }

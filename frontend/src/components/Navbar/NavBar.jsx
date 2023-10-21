@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 const NavBar = () => {
     let admin 
 
-
     return (
         <div className='Container-NavBar'>
             <div className='main-box-NavBar'>

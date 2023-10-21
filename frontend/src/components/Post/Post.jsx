@@ -30,9 +30,9 @@ const Post = () => {
           </div>
           <div className='Info-Post'>
             <div className='Info-H1AndP'>
-              <h1 className='h1-Post'>
+              <Link className='link h1-Post' to={'/singlePage/1'}>
                 Lorem Ipsum is simply dummy text of dummy text ever since the 1500s, when an unknown printer
-              </h1>
+              </Link>
               <p className='p-Post'>
                 It is a long established fact that a reader will be distracted
                 by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it 

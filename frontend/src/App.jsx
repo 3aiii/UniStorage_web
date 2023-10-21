@@ -9,6 +9,9 @@ import {
 import Upload from "./pages/upload/Upload";
 import Favorite from "./pages/favorite/Favorite";
 import AdminDashBoard from "./pages/adminDashboard/AdminDashBoard";
+import Spost from "./pages/spost/Spost";
+import AdminEditUser from "./pages/adminEditUser/AdminEditUser";
+import AdminSingleEditUser from "./pages/adminSingleEditUser/AdminSingleEditUser";
 
 function App() {
 
@@ -36,8 +39,20 @@ function App() {
           element={<Upload/>}
         />
         <Route
+          path='/singlePage/:id'
+          element={<Spost/>}
+        />
+        <Route
           path='/adminDash'
           element={<AdminDashBoard/>}
+        />
+        <Route
+          path='/adminEditUser'
+          element={<AdminEditUser/>}
+        />
+        <Route
+          path='/adminSingleEditUser'
+          element={<AdminSingleEditUser/>}
         />
       </Routes>
     </BrowserRouter>

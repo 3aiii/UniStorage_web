@@ -1,0 +1,48 @@
+.container-DashEditUserPost{
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.Main-DashEditUserPost{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 0rem;
+}
+
+.img-DashEditUserPost{
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.span-DashEditUser{
+    color: #8C8C8C;
+}
+
+.info-DashEditUser{
+    color: #111;
+}
+
+.btn-DashEditUserPost{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.IconEdit{
+    font-size: 22px;
+    border-radius: 10px;
+    padding: 0.6rem;
+    flex-shrink: 0;
+    color: #8C8C8C;
+    background: #EDEDED;
+    transition: 0.5s;
+}
+
+.IconEdit:hover{
+    background: #D3D3D3;
+}

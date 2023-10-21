@@ -1,0 +1,38 @@
+.container-AdminEditUser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Main-AdminEditUser{
+    width: 1100px;
+}
+
+.Search-AdminEditUser{
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid #DEDEDE;  
+    padding: 1rem 0rem;
+}
+
+.IconSearch{
+    margin: 6px 0px 0px 12px;
+    text-align: center;
+}
+
+.search-AdminEditUser{
+    width: 40rem;
+    height: 2.625rem;
+    border-radius: 3.125rem;
+    background: #EDEDED;
+    border: none;
+    font-size: 18px;
+    padding: 1rem 1rem 1rem 2.5rem;
+    font-weight: 300;
+    color: #8C8C8C;
+}
+
+.search-AdminEditUser:focus{
+    outline: none;
+}
