@@ -3,6 +3,7 @@ const connect = require('./server/conn')
 const cors = require('cors')
 const auth = require('./routes/Auth')
 const post = require('./routes/Post')
+const cat = require('./routes/Category')
 
 const app = express()
 const port = 3000
@@ -12,6 +13,7 @@ app.use(express.json())
 
 app.use('/api/Auth',auth)
 app.use('/api/Post',post)
+app.use('/api/Cat',cat)
 
 // connecting mysql
 connect.connect((err)=>{

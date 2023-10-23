@@ -1,12 +1,13 @@
 const router = require('express').Router()
 const conn = require('../server/conn')
-const bodyParser = require('body-parser')
 
-// QUERY
-router.get('/getpost',async(req,res)=>{
+// QUERY POST
+router.get('/getpost',async(req,res)=>{    
+
     let mysql = `SELECT * FROM category 
-                JOIN project ON category.category_id = project.category_id
-                JOIN student ON project.student_id = student.student_id WHERE project.project_status = 'Active' `
+    JOIN project ON category.category_id = project.category_id
+    JOIN student ON project.student_id = student.student_id WHERE project.project_status = 'Active' ORDER BY project_id`
+    
     conn.query(mysql,[],(err,result,field)=>{
         if(err){
             res.json({status : 'error ',message : err})
@@ -20,11 +21,10 @@ router.get('/getpost',async(req,res)=>{
 router.get('/:id',async(req,res)=>{
     const id = req.params.id
     let params = [id]
-    let mysql = `
+    let mysql = `   
         SELECT * FROM category 
         JOIN project ON category.category_id = project.category_id 
-        JOIN student ON project.student_id = student.student_id WHERE project.project_id = ?
-    `
+        JOIN student ON project.student_id = student.student_id WHERE project.project_id = ? `
     try {
         conn.query(
             mysql,

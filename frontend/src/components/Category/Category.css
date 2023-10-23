@@ -18,8 +18,10 @@
     color: #686868;
     position: relative;
     text-decoration: none;
+    background: none;
+    border: none;
+    transition: 1s;
 }
-
 
 .Category-li.active{
     border-bottom: 1px solid #686868;
@@ -28,4 +30,8 @@
 
 .Category-li:hover{
     color: #111;
+}
+
+.Category-li:focus{
+    outline: none;
 }

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import './Category.css'
 import { useState } from 'react';
 
@@ -17,12 +16,11 @@ const Category = () => {
             <ul className='Category-Ul'>
                 {
                     Category.map((Cat,idx)=>(
-                        <Link 
-                            to={'/'} 
+                        <button 
                             className={`Category-li ${activeMenu === idx ? 'active  ': ''} `} 
                             onClick={()=> handleClick(idx)}
                             key={idx}>{Cat}
-                        </Link>
+                        </button>
                     ))
                 }                
             </ul>

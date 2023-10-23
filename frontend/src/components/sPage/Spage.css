@@ -48,7 +48,7 @@
 .interactive-Spage{
     display: flex;
     justify-content: space-between ;
-    padding: 20px;  
+    padding: 20px 0px;  
     border-bottom: 1px solid #DEDEDE;
 }
 
@@ -62,7 +62,6 @@
     border-radius: 50px;
     border: none;
     padding: 5px 15px;
-    cursor: pointer;
     transition: 0.5s;
     font-weight: 400;
     font-size: 18px;
@@ -71,9 +70,9 @@
     margin-right: 10px;
 }
 
-.Category-btn-Spage:hover{
-    background: #D1D1D1;
-}
+/* .Category-btn-Spage:hover{
+    background: #b3b3b3;
+} */
 
 .interactive-button{
     display: flex;

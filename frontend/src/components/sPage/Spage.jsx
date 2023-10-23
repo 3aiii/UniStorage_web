@@ -4,11 +4,9 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 
 const Spage = () => {
-
   const location = useLocation().pathname.split('/')[2]
-  const [singalPost,setSinglPost] = useState('')
-  
-  // console.log(location);
+  const [singlePost,setSinglPost] = useState('')
+    
   const fecthSinglePost =async () =>{
     const res = await axios.get(`http://localhost:3000/api/Post/${location}`)
     setSinglPost(res.data.data[0])
@@ -18,12 +16,11 @@ const Spage = () => {
     fecthSinglePost()
   },[])
   
-
   return (
     <div className='container-Spage'>
       <div className='main-Spage'>
         <h1 className='h1-Spage'>
-          {singalPost.project_name}
+          {singlePost.project_name}
         </h1>
         <div className='User-info'>
           <img
@@ -31,18 +28,18 @@ const Spage = () => {
             alt='SpageInfo'
             className='img-Spage'
           />
-          <h3 className='Username-h3'>{singalPost.student_username}</h3>
+          <h3 className='Username-h3'>{singlePost.student_username}</h3>
           <div className='line-Post'></div>
-          <span className='Date-span'>{singalPost.project_create}</span>
+          <span className='Date-span'>{singlePost.project_create}</span>
         </div>
         <div className='interactive-Spage'>
           <div className='interactive-view-cat'>
-            <Link to={'/home'} className='link Category-btn-Spage'>
-              {singalPost.category_name}
-            </Link>
+            <button className='link Category-btn-Spage'>
+              {singlePost.category_name}
+            </button>
             <span className='span-view-Spost'>
               <i className="IconView fa-regular fa-eye"></i> 
-                {singalPost.project_viewer}
+                {singlePost.project_viewer}
             </span>            
           </div>
           <div className='interactive-button'>
@@ -63,7 +60,7 @@ const Spage = () => {
           <div className='Spage-main-info'>
             <h4 className='Spage-h4'>บทคัดย่อ</h4>
             <p className='Spage-p'>
-              {singalPost.project_abstract}
+              {singlePost.project_abstract}
             </p>
           </div>
         </div>
