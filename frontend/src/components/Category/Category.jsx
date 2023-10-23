@@ -18,7 +18,7 @@ const Category = () => {
                 {
                     Category.map((Cat,idx)=>(
                         <Link 
-                            to={'/home'} 
+                            to={'/'} 
                             className={`Category-li ${activeMenu === idx ? 'active  ': ''} `} 
                             onClick={()=> handleClick(idx)}
                             key={idx}>{Cat}

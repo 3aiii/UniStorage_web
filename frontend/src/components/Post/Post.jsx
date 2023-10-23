@@ -1,16 +1,19 @@
 import './Post.css'
 import {Link} from 'react-router-dom'
 
+const Post = ({post}) => {
+  // Date Config
+  const postDate = new Date(post.project_create);
+  const formatter = new Intl.DateTimeFormat('th-TH', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
-const Post = () => {
+  const formattedDate = formatter.format(postDate);
 
-  // const handleFav = () =>{
-  //   const ToggleFav = document.getElementsByClassName('favorite-btn')
-    
-  //   Togg
-  // }
-
-  // console.log(ToggleFav);  
   return (
     <div className='Container-Post'>
         <div className='Main-Box-Post'>
@@ -21,20 +24,22 @@ const Post = () => {
               className='Img-User-Post'
             />
             <h3 className='h3-Post'>
-              Username
+              {post.student_username} 
             </h3>
             <div className='line-Post'></div>
             <span className='span-Post'>
-              2023-09-27 08:54:07
+              {/* {new Date(post.project_create).toDateString()} */}
+              {formattedDate}
             </span>
           </div>
           <div className='Info-Post'>
             <div className='Info-H1AndP'>
-              <Link className='link h1-Post' to={'/singlePage/1'}>
-                Lorem Ipsum is simply dummy text of dummy text ever since the 1500s, when an unknown printer
+              <Link className='link h1-Post' to={`/singlePage/${post.project_id}`}>
+                {post.project_name}
                 <p className='p-Post'>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it 
+                 {
+                  post.project_abstract
+                 }
                 </p>
               </Link>
             </div>
@@ -47,11 +52,11 @@ const Post = () => {
           <div className='Viewed-Post'>
             <div className='Viewed-btnAndView-Post'>
               <Link to={'/home'} className='link Category-btn-Post'>
-                Network
+                {post.category_name}
               </Link>
               <span className='span-view-Post'>
                 <i className="IconView fa-regular fa-eye"></i> 
-                512 view
+                {post.project_viewer}
               </span>
             </div>
             <button className='favorite-btn'>

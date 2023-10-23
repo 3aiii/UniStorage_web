@@ -39,7 +39,7 @@
 
 .box-input-register{
     display: flex;
-    margin: 20px 0px;
+    margin: 20px 0px 0px 0px;
 }
 
 .list-input-first-col-register{
@@ -48,6 +48,10 @@
 
 .list-input-sec-col-register{
     width: 400px;
+}
+
+.list-input-single{
+    margin-bottom: 20px;
 }
 
 .input-register{
@@ -62,6 +66,12 @@
     color: #58C3FF;
     margin: 10px;
 }
+
+.input-register.email{
+    width: 780px;
+}
+
+
 
 .input-register:focus{
     outline: none;
