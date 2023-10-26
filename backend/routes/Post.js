@@ -4,12 +4,12 @@ const Upload = require('../middleware/Upload')
 
 // QUERY POST
 router.get('/getpost',async(req,res)=>{    
-
+    let params = []
     let mysql = `SELECT * FROM category 
     JOIN project ON category.category_id = project.category_id
     JOIN student ON project.student_id = student.student_id  ORDER BY project_id`
     
-    conn.query(mysql,[],(err,result,field)=>{
+    conn.query(mysql,params,(err,result,field)=>{
         if(err){
             res.json({status : 'error ',message : err})
         } else{

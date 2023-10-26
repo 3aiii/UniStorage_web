@@ -4,6 +4,7 @@ const cors = require('cors')
 const auth = require('./routes/Auth')
 const post = require('./routes/Post')
 const cat = require('./routes/Category')
+const user = require('./routes/User')
 
 const app = express()
 const port = 3000
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use('/api/Auth',auth)
 app.use('/api/Post',post)
 app.use('/api/Cat',cat)
+app.use('/api/User',user)
 
 // connecting mysql
 connect.connect((err)=>{

@@ -2,7 +2,7 @@ import './DashEditUserPost.css'
 import {Link} from 'react-router-dom'
 
 
-const DashEditUserPost = () => {
+const DashEditUserPost = ({deup}) => {
   return (
     <div className='container-DashEditUserPost'>
         <div className='Main-DashEditUserPost'>
@@ -11,15 +11,15 @@ const DashEditUserPost = () => {
                 alt='img-DashEditUserPost'
                 className='img-DashEditUserPost'
             />
-            <span className='span-DashEditUser'><span className='info-DashEditUser'>id </span>6411011660027</span>
+            <span className='span-DashEditUser'><span className='info-DashEditUser'>id </span>{deup.student_id}</span>
+            <div className='line-Post'></div> 
+            <span className='span-DashEditUser'><span className='info-DashEditUser'>Username </span>{deup.student_username}</span>
             <div className='line-Post'></div>
-            <span className='span-DashEditUser'><span className='info-DashEditUser'>Username </span>fkmejgeijebp</span>
+            <span className='span-DashEditUser'><span className='info-DashEditUser'>ชื่อ </span>{deup.student_fname}</span>
             <div className='line-Post'></div>
-            <span className='span-DashEditUser'><span className='info-DashEditUser'>ชื่อ </span>trbaeibiikieydwad</span>
+            <span className='span-DashEditUser'><span className='info-DashEditUser'>นามสกุล </span>{deup.student_lname}</span>
             <div className='line-Post'></div>
-            <span className='span-DashEditUser'><span className='info-DashEditUser'>นามสกุล </span>gfnnl,gfnkpofthkt</span>
-            <div className='line-Post'></div>
-            <span className='span-DashEditUser'><span className='info-DashEditUser'>Email </span>somchai@gmail.com</span>
+            <span className='span-DashEditUser'><span className='info-DashEditUser'>Email </span>{deup.student_email}</span>
         </div>
         <Link className='link btn-DashEditUserPost' to='/AdminSingleEditUser'>
           <i class="IconEdit fa-regular fa-pen-to-square"></i>

@@ -25,7 +25,8 @@ const AdminDashBoard = () => {
       <div className='Box-AdminDashBoard'>
         {
           DashPosted.map((p)=>(
-            p.project_status === 'Pending' && (
+            // Fillter status and turitin 
+            p.project_status === 'Pending' && p.project_turnitin <= 20 && (
               <DashPost DashPost = {p} key={p.project_id}/>
             )
           ))
