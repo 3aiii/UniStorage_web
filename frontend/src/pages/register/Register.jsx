@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './Register.css'
 import axios from 'axios';
+import swal from 'sweetalert2'
 
 const Register = () => {
   const [fname, setFirstName] = useState('');
@@ -22,7 +23,7 @@ const Register = () => {
       })
       if (res){
         window.location = '/login'
-        console.log(res.data);
+        
       } else{
         console.log('something wrong !');
       }

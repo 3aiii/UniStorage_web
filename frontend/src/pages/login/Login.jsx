@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Login.css'
 import {Link} from "react-router-dom"; 
 import axios from 'axios'
+import swal from 'sweetalert2'
 
 
 const Login = () => {
@@ -15,11 +16,20 @@ const Login = () => {
         username : username,
         password : password
       })
+      console.log(res.data.data);
       if (res){
-        localStorage.setItem('token',res.data.token)
-        window.location = '/'
-      }
-      
+        await swal.fire({
+          title: 'ยินดีต้อนรับ!',
+          text : `คุณ ${res.data.data[0].student_fname} ${res.data.data[0].student_lname}`,
+          icon: 'success',    
+          timer: 1200,
+          timerProgressBar: true, 
+          showConfirmButton : false
+        }).then(()=>{
+          localStorage.setItem('token',res.data.token)
+          window.location = '/'
+        })
+      }      
     } catch (error) {
       console.log('something went wrong !');
     }

@@ -11,7 +11,7 @@ const Upload = () => {
     const [project_turnitin,setTurnitin] = useState(0)
     const [project_img_file,setfile_img] = useState(null)
     const [project_pdf_file,setfile_pdf] = useState(null)
-    const user = 10
+    const user = 12
     // Auth PDF file
     const handleFileChange = (e) =>{
         const file = e.target.files[0]

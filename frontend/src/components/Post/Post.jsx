@@ -45,7 +45,6 @@ const Post = ({post}) => {
               </p>
             </Link>
           </div>
-          {console.log(post.project_img_file)}
           <img
             src= {PF + post.project_img_file}
             alt='Img-Cover-Post'

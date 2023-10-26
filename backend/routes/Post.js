@@ -7,7 +7,7 @@ router.get('/getpost',async(req,res)=>{
 
     let mysql = `SELECT * FROM category 
     JOIN project ON category.category_id = project.category_id
-    JOIN student ON project.student_id = student.student_id WHERE project.project_status = 'Active' ORDER BY project_id`
+    JOIN student ON project.student_id = student.student_id  ORDER BY project_id`
     
     conn.query(mysql,[],(err,result,field)=>{
         if(err){
@@ -73,6 +73,61 @@ router.post('/create', Upload,async (req,res)=>{
         res.status(500).json({status : 'error',message : error})            
     }
 })
+
+// APPROVE POST 
+router.put('/approve', async(req,res)=>{
+    const {project_id} = req.body
+    // console.log(project_id);
+    let mysql = `UPDATE project
+                SET project_status = 'Active' WHERE project_id = ?`
+    const params = [project_id]
+    
+    try {
+        conn.query(
+            mysql,
+            params,
+            (err,result,field)=>{
+                if(err){
+                    res.json({status : 'error' , message : err})
+                } else{
+                    res.json({status : 'ok' , data : result})                    
+                }
+            }
+        )
+        
+    } catch (error) {
+        res.json({status : 'error'  , message : error})
+    }
+})
+
+
+// REJECT POST 
+router.put('/reject', async(req,res)=>{
+    const {project_id} = req.body
+    // console.log(project_id);
+    let mysql = `UPDATE project
+                SET project_status = 'Reject' WHERE project_id = ?`
+    const params = [project_id]
+    
+    try {
+        conn.query(
+            mysql,
+            params,
+            (err,result,field)=>{
+                if(err){
+                    res.json({status : 'error' , message : err})
+                } else{
+                    res.json({status : 'ok' , data : result})                    
+                }
+            }
+        )
+        
+    } catch (error) {
+        res.json({status : 'error'  , message : error})
+    }
+})
+
+
 
 
 module.exports = router
