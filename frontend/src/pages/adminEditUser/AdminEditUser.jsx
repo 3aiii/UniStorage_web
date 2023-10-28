@@ -8,6 +8,7 @@ const AdminEditUser = () => {
     const [user,setUser] = useState([])
     const [search,setSearch] = useState('')
 
+    // FETCH USER API
     const FetchUser = async () =>{
         let url = `http://localhost:3000/api/User/getuser`
 
@@ -17,23 +18,12 @@ const AdminEditUser = () => {
 
         try {
             const res = await axios.get(url)
-            console.log(url);
+            // console.log(url);
             setUser(res.data.data)            
         } catch (error) {
             console.error("Error fetching user data:", error);  
         }
     }    
-
-    // const FetchAllUser = async () =>{
-    //     try {
-    //         const res = await axios.get(`http://localhost:3000/api/User/getuser`)
-    //         // console.log(res.data.data);
-    //         setUser(res.data.data)
-            
-    //     } catch (error) {
-    //         console.error("Error fetching user data:", error);
-    //     }
-    // }
 
     const onSearch = (e) =>{
         e.preventDefault()
@@ -68,8 +58,7 @@ const AdminEditUser = () => {
                         ))
                     }
                 </div>
-            </div>
-                
+            </div>                
         </div>
     )
 }

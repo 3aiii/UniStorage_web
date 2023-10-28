@@ -41,7 +41,8 @@ router.get('/:id',async(req,res)=>{
         } catch (error) {
             res.status(500).json({status : 'error',message : error})            
         }
-})
+    }
+)
 
 // INSERT POST
 router.post('/create', Upload,async (req,res)=>{
@@ -100,7 +101,6 @@ router.put('/approve', async(req,res)=>{
     }
 })
 
-
 // REJECT POST 
 router.put('/reject', async(req,res)=>{
     const {project_id} = req.body
@@ -126,8 +126,5 @@ router.put('/reject', async(req,res)=>{
         res.json({status : 'error'  , message : error})
     }
 })
-
-
-
 
 module.exports = router

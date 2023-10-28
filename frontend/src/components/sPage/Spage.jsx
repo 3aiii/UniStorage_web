@@ -1,15 +1,30 @@
 import './Spage.css'
-import {Link, useLocation} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 
 const Spage = () => {
   const location = useLocation().pathname.split('/')[2]
   const [singlePost,setSinglPost] = useState('')
-    
-  const fecthSinglePost =async () =>{
+  const [formattedDate, setFormattedDate] = useState('')
+
+  const fecthSinglePost = async () =>{
     const res = await axios.get(`http://localhost:3000/api/Post/${location}`)
     setSinglPost(res.data.data[0])
+
+    // Date Config
+    const postDate = new Date(res.data.data[0].project_create);
+    const formatter = new Intl.DateTimeFormat('th-TH', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+
+    const formatted = formatter.format(postDate);
+    setFormattedDate(formatted);
+
   }
   
   useEffect(()=>{
@@ -30,7 +45,7 @@ const Spage = () => {
           />
           <h3 className='Username-h3'>{singlePost.student_username}</h3>
           <div className='line-Post'></div>
-          <span className='Date-span'>{singlePost.project_create}</span>
+          <span className='Date-span'>{formattedDate}</span>
         </div>
         <div className='interactive-Spage'>
           <div className='interactive-view-cat'>

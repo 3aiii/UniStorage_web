@@ -21,6 +21,7 @@ const Posts = () => {
     }
   }
 
+  // FECTH CATEGORY API
   const fecthCategory = async () => {
     const res = await axios.get('http://localhost:3000/api/Cat/');
     setCat([{ category_id: 0, category_name: 'All' }, ...res.data.data]);
@@ -46,11 +47,11 @@ const Posts = () => {
               <ul className='Category-Ul'>
                   {
                     Cat.map((Cat,idx)=>(
-                        <button 
-                            className={`Category-li ${activeMenu === idx ? 'active  ': ''} `} 
-                            onClick={()=> handleClick(idx,Cat.category_id)}
-                            key={idx}>{Cat.category_name}
-                        </button>
+                      <button 
+                          className={`Category-li ${activeMenu === idx ? 'active  ': ''} `} 
+                          onClick={()=> handleClick(idx,Cat.category_id)}
+                          key={idx}>{Cat.category_name}
+                      </button>
                     ))
                   }                
               </ul>

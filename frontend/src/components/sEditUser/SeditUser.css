@@ -12,10 +12,11 @@
 
 .h1-SeditUser{
     text-align: center;
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 500;
     padding: 30px;
     border-bottom: 1px solid #DEDEDE;
+    /* letter-spacing: 2px; */
 }
 
 /* 

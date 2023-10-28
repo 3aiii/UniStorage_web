@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 import axios from 'axios'
 import swal from 'sweetalert2'
 
-
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

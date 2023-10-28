@@ -22,7 +22,7 @@ const NavBarAdmin = () => {
                         className='Img-Icon-Profile'
                     />
                 </div>
-                <Link to='/login' className='link Logout-NavBar'>
+                <Link to='/loginadmin' className='link Logout-NavBar'>
                     <i class="IconLogout fa-solid fa-arrow-right-from-bracket"></i>
                     Logout
                 </Link>  

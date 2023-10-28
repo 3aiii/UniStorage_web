@@ -2,7 +2,7 @@ import './Post.css'
 import {Link} from 'react-router-dom'
 
 const Post = ({post}) => {
-  const PF = "http://localhost:3000/img/"
+  const PF = "../../../../backend/img/"
 
   // Date Config
   const postDate = new Date(post.project_create);
@@ -30,7 +30,6 @@ const Post = ({post}) => {
           </h3>
           <div className='line-Post'></div>
           <span className='span-Post'>
-            {/* {new Date(post.project_create).toDateString()} */}
             {formattedDate}
           </span>
         </div>
@@ -40,7 +39,7 @@ const Post = ({post}) => {
               {post.project_name}
               <p className='p-Post'>
                 {
-                post.project_abstract
+                  post.project_abstract
                 }
               </p>
             </Link>

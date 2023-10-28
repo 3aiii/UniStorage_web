@@ -12,6 +12,7 @@ import AdminDashBoard from "./pages/adminDashboard/AdminDashBoard";
 import Spost from "./pages/spost/Spost";
 import AdminEditUser from "./pages/adminEditUser/AdminEditUser";
 import AdminSingleEditUser from "./pages/adminSingleEditUser/AdminSingleEditUser";
+import LoginAdmin from "./pages/adminLogin/LoginAdmin";
 
 function App() {
 
@@ -43,6 +44,10 @@ function App() {
           element={<Spost/>}
         />
         <Route
+          path='/loginadmin'
+          element = {<LoginAdmin/>}
+        />
+        <Route
           path='/adminDash'
           element={<AdminDashBoard/>}
         />
@@ -51,7 +56,7 @@ function App() {
           element={<AdminEditUser/>}
         />
         <Route
-          path='/adminSingleEditUser'
+          path='/adminSingleEditUser/:id'
           element={<AdminSingleEditUser/>}
         />
       </Routes>

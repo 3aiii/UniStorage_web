@@ -21,8 +21,8 @@ const DashEditUserPost = ({deup}) => {
             <div className='line-Post'></div>
             <span className='span-DashEditUser'><span className='info-DashEditUser'>Email </span>{deup.student_email}</span>
         </div>
-        <Link className='link btn-DashEditUserPost' to='/AdminSingleEditUser'>
-          <i class="IconEdit fa-regular fa-pen-to-square"></i>
+        <Link className='link btn-DashEditUserPost' to={`/adminSingleEditUser/${deup.student_id}`}>
+          <i className="IconEdit fa-regular fa-pen-to-square"></i>
         </Link>
     </div>
   )
