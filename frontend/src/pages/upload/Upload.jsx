@@ -1,8 +1,9 @@
 import './Upload.css'
 import NavBar from '../../components/Navbar/NavBar'
 import { useState } from 'react'
-import Swal from 'sweetalert2'
+import swal from 'sweetalert2'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const Upload = () => {
     const [project_name,setName] = useState('')
@@ -11,7 +12,8 @@ const Upload = () => {
     const [project_turnitin,setTurnitin] = useState(0)
     const [project_img_file,setfile_img] = useState(null)
     const [project_pdf_file,setfile_pdf] = useState(null)
-    const user = 12
+    const { user } = useSelector((state)=> state.auth)
+
     // Auth PDF file
     const handleFileChange = (e) =>{
         const file = e.target.files[0]
@@ -52,7 +54,7 @@ const Upload = () => {
             pass
           } else{
                 const data = new FormData()
-                data.append('student_id',user)
+                data.append('student_id',user.student_id)
                 data.append('project_name',project_name)
                 data.append('project_abstract',project_abstract)
                 data.append('project_turnitin',project_turnitin)
@@ -61,7 +63,7 @@ const Upload = () => {
                 data.append('category_id',category_id)
 
                 if(data){
-                await Swal.fire({
+                await swal.fire({
                     title: 'คุณต้องการบันทึกหรือไม่!',
                     text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
                     icon: 'question',
@@ -75,7 +77,7 @@ const Upload = () => {
                                 "Content-Type": "multipart/form-data",
                             }
                             })
-                            await Swal.fire({
+                            await swal.fire({
                             title: 'บันทึก Project เสร็จสิ้น',
                             text: 'ทุกคนจะเห็น project ของคุณได้ก็ต่อเมื่ออาจารย์ที่ปรึกษา Approve ให้',
                             icon: 'success',
@@ -90,7 +92,7 @@ const Upload = () => {
                         }
                     });
                 } else{
-                    Swal.showValidationMessage('โปรดใส่ข้อมูลให้ครบถ้วน !')
+                    swal.showValidationMessage('โปรดใส่ข้อมูลให้ครบถ้วน !')
                 }
         }
     }
@@ -141,7 +143,9 @@ const Upload = () => {
                                     max={100}
                                     placeholder='ข้อมูล turnitin 0 - 100'
                                 />
-                                <p className='lb-p'><span>*หมายเหตุ</span> : เรียนรู้เพิ่มเติมเกี่ยวกับ turnitin เพิ่มเติมได้ <a className='link LearningHere' target='blank' href='https://w1.med.cmu.ac.th/library/files/Manual_Turnitin-for-Student.pdf'>ที่นี่</a></p>
+                                <p className='lb-p'><span>*หมายเหตุ</span> : เรียนรู้เพิ่มเติมเกี่ยวกับ turnitin เพิ่มเติมได้
+                                 <a className='link LearningHere' target='blank' href='https://w1.med.cmu.ac.th/library/files/Manual_Turnitin-for-Student.pdf'>ที่นี่</a>
+                                </p>
                             </div>
                         </div>
                         <div className='input-sub-cat-submit'>

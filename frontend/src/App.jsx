@@ -13,15 +13,17 @@ import Spost from "./pages/spost/Spost";
 import AdminEditUser from "./pages/adminEditUser/AdminEditUser";
 import AdminSingleEditUser from "./pages/adminSingleEditUser/AdminSingleEditUser";
 import LoginAdmin from "./pages/adminLogin/LoginAdmin";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { isLoggedIn } = useSelector((state)=> state.auth)
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path='/login'
-          element={<Login/>}
+          element={isLoggedIn ? <Home/> : <Login/>}
         />
         <Route
           path='/register'
@@ -29,35 +31,35 @@ function App() {
         />
         <Route
           path='/'
-          element={<Home/>}
+          element={isLoggedIn ? <Home/> : <Login/>}
         />
         <Route
           path='/favorite'
-          element={<Favorite/>}
+          element={isLoggedIn ? <Favorite/> : <Login/>}
         />
         <Route
           path='/upload'
-          element={<Upload/>}
+          element={isLoggedIn ? <Upload/> : <Login/>}
         />
         <Route
           path='/singlePage/:id'
-          element={<Spost/>}
+          element={isLoggedIn ? <Spost/> : <Login/>}
         />
         <Route
           path='/loginadmin'
-          element = {<LoginAdmin/>}
+          element = {isLoggedIn ? <AdminDashBoard/> :<LoginAdmin/>}
         />
         <Route
           path='/adminDash'
-          element={<AdminDashBoard/>}
+          element={isLoggedIn ? <AdminDashBoard/>:<LoginAdmin/>}
         />
         <Route
           path='/adminEditUser'
-          element={<AdminEditUser/>}
+          element={isLoggedIn ? <AdminEditUser/> :<LoginAdmin/>}
         />
         <Route
           path='/adminSingleEditUser/:id'
-          element={<AdminSingleEditUser/>}
+          element={isLoggedIn ? <AdminSingleEditUser/> :<LoginAdmin/>}
         />
       </Routes>
     </BrowserRouter>

@@ -140,6 +140,8 @@
     width: 100px;
     height: 38px;
     transition: 0.5s;
+    border: none;
+    cursor: pointer;
 }
 
 .Logout-NavBar:hover{

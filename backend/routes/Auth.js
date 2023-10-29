@@ -47,9 +47,13 @@ router.post('/login',async (req,res)=>{
                     res.status(404).send('no user found'); return }        
                 bcrypt.compare(req.body.password,user[0].student_password, (err,isLogin)=>{
                     if(isLogin){
-                        const token = jwt.sign({ username: user[0].student_username }, secret ,{ expiresIn : '1h'});
-                        res.status(200).json({status : 'Login success',token, data : user})
-
+                        const userDataToSend = {
+                            student_id: user[0].student_id,
+                            student_username: user[0].student_username,
+                            student_fname: user[0].student_fname,
+                            student_lname: user[0].student_lname,
+                        };
+                        res.status(200).json({status : 'Login success', data : userDataToSend })
                     } else{
                         res.status(404).send('Login failed')
                     }
@@ -87,7 +91,13 @@ router.post('/loginadmin',async (req,res)=>{
                 if(user.length == 0 ){
                     res.status(404).send('no user found'); return 
                 } else{
-                    res.status(200).json({status : 'Login success', data : user})
+                    const teacherDataToSend = {
+                        teacher_id: user[0].teacher_id,
+                        teacher_username: user[0].teacher_username,
+                        teacher_fname: user[0].teacher_fname,
+                        teacher_lname: user[0].teacher_lname,
+                    };
+                    res.status(200).json({status : 'Login success', data : teacherDataToSend})
                 }
             }
         )

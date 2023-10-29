@@ -1,9 +1,26 @@
+import { useDispatch, useSelector } from 'react-redux';
 import './NavBar.css'
 import { Link } from 'react-router-dom'
+import swal from 'sweetalert2';
+import { logout } from '../../context/authSlice';
 
 const NavBar = () => {
-    let admin 
-
+    const dispatch = useDispatch();
+    // LOGOUT BUTTON
+    const HandleLogout = async () =>{
+        await swal.fire({
+            title: 'คุณต้องการจะออกจากระบบหรือไม่?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'ออกจากระบบ',
+            confirmButtonColor: '#d33',
+            cancelButtonText: 'ยกเลิก',  
+            preConfirm: () =>{
+                dispatch(logout())
+            }
+          }
+        )  
+    }
     return (
         <div className='Container-NavBar'>
             <div className='main-box-NavBar'>
@@ -44,10 +61,10 @@ const NavBar = () => {
                             className='Img-Icon-Profile'
                         />
                     </div>
-                    <Link to='/login' className='link Logout-NavBar'>
+                    <button onClick={HandleLogout} className='link Logout-NavBar'>
                         <i class="IconLogout fa-solid fa-arrow-right-from-bracket"></i>
                         Logout
-                    </Link>
+                    </button>
                 </div>
             </div>
         </div>

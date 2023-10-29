@@ -2,6 +2,7 @@ const router = require('express').Router()
 const conn = require('../server/conn')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
 // FEACTH USER
 router.get('/getuser',async(req,res)=>{
     const search = req.query.search

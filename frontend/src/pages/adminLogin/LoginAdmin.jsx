@@ -2,13 +2,18 @@ import './LoginAdmin.css'
 import axios from 'axios'
 import swal from 'sweetalert2'
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../context/authSlice';
 
 const LoginAdmin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-  
+    const dispatch = useDispatch();
+
+    // ADMIN LOGIN BUTTON 
     const handleSubmit = async (e) =>{
       e.preventDefault()
+
       try {
         const res = await axios.post("http://localhost:3000/api/Auth/loginadmin", {
           username : username,
@@ -18,14 +23,13 @@ const LoginAdmin = () => {
         if (res){
           await swal.fire({
             title: 'ยินดีต้อนรับ!',
-            text : `คุณ ${res.data.data[0].teacher_fname} ${res.data.data[0].teacher_lname}`,
+            text : `คุณ ${res.data.data.teacher_fname} ${res.data.data.teacher_lname}`,
             icon: 'success',    
             timer: 1200,
             timerProgressBar: true, 
             showConfirmButton : false
           }).then(()=>{
-            localStorage.setItem('token',res.data.token)
-            window.location = '/adminDash'
+            dispatch(login(res.data.data))
           })
         }      
       } catch (error) {

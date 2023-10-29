@@ -3,31 +3,33 @@ import './Login.css'
 import {Link} from "react-router-dom"; 
 import axios from 'axios'
 import swal from 'sweetalert2'
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../context/authSlice';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
+
     try {
       const res = await axios.post("http://localhost:3000/api/Auth/login", {
         username : username,
         password : password
-      })
-      console.log(res.data.data);
+      })      
+            
       if (res){
         await swal.fire({
           title: 'ยินดีต้อนรับ!',
-          text : `คุณ ${res.data.data[0].student_fname} ${res.data.data[0].student_lname}`,
+          text : `คุณ ${res.data.data.student_fname} ${res.data.data.student_lname}`,
           icon: 'success',    
           timer: 1200,
           timerProgressBar: true, 
           showConfirmButton : false
-        }).then(()=>{
-          localStorage.setItem('token',res.data.token)
-          window.location = '/'
         })
+        dispatch(login(res.data.data))
       }      
     } catch (error) {
       console.log('something went wrong !');
