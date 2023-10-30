@@ -180,8 +180,17 @@
     border-radius: 30px;
     cursor: pointer;
     transition: 0.5s;
+    outline: none;
 }
 
 .btn-submit:hover{
     background: #65c3f9;
+}
+
+/* Error message*/
+.error-message{
+    font-size: 14px;
+    color: red;
+    margin-top: 5px;
+    margin-left: 10px;
 }

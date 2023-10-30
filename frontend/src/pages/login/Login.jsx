@@ -7,9 +7,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../context/authSlice';
 
 const Login = () => {
+  const [projectNameError, setProjectNameError] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+
+  const TextFail = [
+    'username และ password ไม่ถูกต้อง,โปรดตรวจสอบอีกครั้ง !',
+    'โปรดกรอก username !',
+    'โปรดกรอก password !',
+    'โปรดกรอก username และ password !'
+  ]
 
   const handleSubmit = async (e) =>{
     e.preventDefault()
@@ -32,10 +40,13 @@ const Login = () => {
         dispatch(login(res.data.data))
       }      
     } catch (error) {
-      console.log('something went wrong !');
+        !username && !password ? setProjectNameError(TextFail[3]) :
+        !username ? setProjectNameError(TextFail[1]) :
+        !password ? setProjectNameError(TextFail[2]) : 
+        setProjectNameError(TextFail[0])
     }
   }
-
+  console.log(TextFail);
   return (
     <div className='Container-login'>  
       <div className='main-box-login'>
@@ -64,6 +75,7 @@ const Login = () => {
                   className='input password-login'
                   onChange={(e)=> setPassword(e.target.value)}
                   />
+                <p className='error-text'>{projectNameError}</p>
                 <button type='submit' className='button-login'>
                   <i class="IconButtonLogin fa-solid fa-circle-arrow-right"></i> 
                   LOGIN

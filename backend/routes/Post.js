@@ -75,6 +75,55 @@ router.post('/create', Upload,async (req,res)=>{
     }
 })
 
+// INSERT FAVORITE
+router.post('/favorite', async(req,res)=>{
+    const { student_id , project_id } = req.body
+
+    let mysql = `INSERT INTO favorite (student_id,project_id)
+        VALUES (?, ?)`
+    
+    const params = [student_id,project_id]
+
+    try {
+        conn.query(
+            mysql,
+            params,
+            (err,result,field)=>{
+                if(err){
+                    res.json({status : 'error' ,message : err})
+                } else{
+                    res.json({status : 'ok', data : result})
+                }
+            }
+        )
+    } catch (error) {
+        res.status(500).json({status : 'error',message : error})            
+    }
+})
+
+// QUERY FAVORTIE EACH USER
+router.get('/getfavorite',async(req,res)=>{   
+    const student_id  = req.query.id
+    console.log(student_id);
+    let params = [student_id]
+
+    let mysql = `SELECT * FROM favorite 
+    JOIN project ON favorite.project_id = project.project_id
+    JOIN student ON project.student_id = student.student_id WHERE favorite.student_id = ?`
+
+    try {
+        conn.query(mysql,params,(err,result,field)=>{
+            if(err){
+                res.json({status : 'error ',message : err})
+            } else{
+                res.json({status : 'ok', data : result})
+            }
+        })
+    } catch (error) {
+        res.json({status : 'error' ,message : error})
+    }
+})
+
 // APPROVE POST 
 router.put('/approve', async(req,res)=>{
     const {project_id} = req.body

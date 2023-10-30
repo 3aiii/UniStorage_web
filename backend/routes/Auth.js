@@ -11,7 +11,7 @@ const secret = 'Login-2023-SE'
 router.post('/register',jsonParser,async(req,res)=>{
     const { username , password , fname, lname, email } = req.body
     let mysql = `INSERT INTO student (student_username,student_password,student_fname,student_lname,student_email) VALUES (? ,? ,? ,? ,?)` 
-
+    
     bcrypt.hash(password, saltRounds, (err, hash)=>{
         try {
             conn.query(

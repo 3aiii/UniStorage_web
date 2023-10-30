@@ -17,8 +17,7 @@ const NavBarAdmin = () => {
             cancelButtonText: 'ยกเลิก',  
             preConfirm: () =>{
                 dispatch(logout())
-            }
-            }
+            }}
         )  
     }
 

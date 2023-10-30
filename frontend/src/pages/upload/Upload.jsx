@@ -45,13 +45,24 @@ const Upload = () => {
         }
     }
 
+    let [projectNameError, setProjectNameError] = useState('');
+    let [abstractError, setAbstractError] = useState('');
+    let [imgError, setImgError] = useState('');
+    let [pdfError, setPdfError] = useState('');
+    let [turnitinError, setTurnitinError] = useState('');
+    let [categoryError, setCategoryError] = useState('');
+    
     const handleSubmit = async (e) =>{
         e.preventDefault()
 
+        setProjectNameError(!project_name ? '*กรุณากรอกชื่อผลงาน' : '');
+        setAbstractError(!project_abstract ? '*กรุณากรอกบทคัดย่อ' : '');
+        setImgError(!project_img_file ? '*กรุณาอัปโหลดรูปภาพประกอบ' : '');
+        setPdfError(!project_pdf_file ? '*กรุณาอัปโหลดไฟล์ผลงาน' : '');
+        setTurnitinError(!project_turnitin ? '*กรุณากรอกผล Turnitin' : (project_turnitin > 100 ? '*ค่า Turnitin ต้องไม่เกิน 100' : ''));
+        
         if(!category_id){
-            // const fail_cat = document.getElementById('failText')
-            // fail_cat.classList.replace('hide','active')
-            pass
+            setCategoryError('กรุณาเลือกหมวดหมู่');
           } else{
                 const data = new FormData()
                 data.append('student_id',user.student_id)
@@ -72,10 +83,10 @@ const Upload = () => {
                     showCancelButton : true,
                     preConfirm: async ()=>{
                         try {
-                            const res = await axios.post('http://localhost:3000/api/Post/create',data,{
-                            headers : {
-                                "Content-Type": "multipart/form-data",
-                            }
+                            await axios.post('http://localhost:3000/api/Post/create',data,{
+                                headers : {
+                                    "Content-Type": "multipart/form-data",
+                                }
                             })
                             await swal.fire({
                             title: 'บันทึก Project เสร็จสิ้น',
@@ -89,8 +100,7 @@ const Upload = () => {
                         } catch (error) {
                             console.error("Error:",error)
                         }
-                        }
-                    });
+                    }});
                 } else{
                     swal.showValidationMessage('โปรดใส่ข้อมูลให้ครบถ้วน !')
                 }
@@ -109,13 +119,16 @@ const Upload = () => {
                             type='text'
                             className='inputmain projectname'
                             onChange={(e)=> setName(e.target.value)}
-                            required
+                    
                         />
+                        {projectNameError && <div className='error-message'>{projectNameError}</div>}                        
                         <label className='lb Abstract'>บทคัดย่อ</label>
                         <textarea type='text'
                             onChange={(e)=> setAbs(e.target.value)}
                             className='inputmain Abstract'>
                         </textarea>
+                        {abstractError && <div className='error-message'>{abstractError}</div>}
+
                         <div className='input-sub-upload'>
                             <div className='lbsub 1'>
                                 <label className='lb-img'>รูปภาพประกอบ</label>
@@ -124,6 +137,7 @@ const Upload = () => {
                                     type='file'
                                     className='inputsub img'
                                 />
+                                {imgError && <div className='error-message'>{imgError}</div>}                                
                             </div>
                             <div className='lbsub 2'>
                                 <label className='lb-pdf'>ไฟล์ผลงาน</label>
@@ -132,17 +146,17 @@ const Upload = () => {
                                     className='inputsub pdf'
                                     onChange={handleFileChange}                               
                                 />
+                                {pdfError && <div className='error-message'>{pdfError}</div>}                            
                             </div>
                             <div className='lbsub 3'>
                                 <label className='lb-turnitin'>ผล turnitin</label>
                                 <input
                                     type='number'
                                     className='inputsub turnitin'
-                                    onChange={(e)=> setTurnitin(e.target.value)}
-                                    min={0}
-                                    max={100}
+                                    onChange={(e)=> setTurnitin(e.target.value)}            
                                     placeholder='ข้อมูล turnitin 0 - 100'
                                 />
+                                {turnitinError && <div className='error-message'>{turnitinError}</div>}
                                 <p className='lb-p'><span>*หมายเหตุ</span> : เรียนรู้เพิ่มเติมเกี่ยวกับ turnitin เพิ่มเติมได้
                                  <a className='link LearningHere' target='blank' href='https://w1.med.cmu.ac.th/library/files/Manual_Turnitin-for-Student.pdf'>ที่นี่</a>
                                 </p>
@@ -161,6 +175,7 @@ const Upload = () => {
                                     </select>
                                     <i className="IconArrow fa-solid fa-chevron-down"></i>
                                 </div>
+                                {categoryError && <div className='error-message'>{categoryError}</div>}
                             </div>
                             <button className='btn-submit' type='submit'>Upload</button>
                         </div>

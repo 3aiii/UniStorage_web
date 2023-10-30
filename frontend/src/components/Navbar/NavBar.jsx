@@ -3,9 +3,12 @@ import './NavBar.css'
 import { Link } from 'react-router-dom'
 import swal from 'sweetalert2';
 import { logout } from '../../context/authSlice';
+import { useState } from 'react';
 
 const NavBar = () => {
+    const [search,setSearch] = useState()
     const dispatch = useDispatch();
+    
     // LOGOUT BUTTON
     const HandleLogout = async () =>{
         await swal.fire({
@@ -38,6 +41,7 @@ const NavBar = () => {
                             type='text'
                             className='search-NavBar'
                             placeholder='Search'
+                            onChange={(e)=>setSearch(e.target.value)}
                         />
                     </div>
                 </div>
