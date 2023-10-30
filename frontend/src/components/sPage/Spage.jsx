@@ -14,16 +14,9 @@ const Spage = () => {
 
     // Date Config
     const postDate = new Date(res.data.data[0].project_create);
-    const formatter = new Intl.DateTimeFormat('th-TH', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-
-    const formatted = formatter.format(postDate);
-    setFormattedDate(formatted);
+    const options = { year: 'numeric', month: 'long', day: 'numeric'};
+    const formattedDate = postDate.toLocaleDateString('en-US', options);
+    setFormattedDate(formattedDate);
 
   }
   

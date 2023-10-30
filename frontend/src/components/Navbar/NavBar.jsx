@@ -6,9 +6,9 @@ import { logout } from '../../context/authSlice';
 import { useState } from 'react';
 
 const NavBar = () => {
-    const [search,setSearch] = useState()
     const dispatch = useDispatch();
-    
+    const { user } = useSelector((state)=> state.auth)
+
     // LOGOUT BUTTON
     const HandleLogout = async () =>{
         await swal.fire({
@@ -55,7 +55,7 @@ const NavBar = () => {
                         />
                         Upload
                     </Link>
-                    <Link to='/favorite' className='link Favorite-NavBar'>
+                    <Link to={`/favorite/${user.student_id}`} className='link Favorite-NavBar'>
                         <i className="IconFavorite fa-solid fa-heart"></i>
                     </Link>
                     <div className='Profile-NavBar'>

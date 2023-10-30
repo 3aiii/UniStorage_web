@@ -34,7 +34,7 @@ function App() {
           element={isLoggedIn ? <Home/> : <Login/>}
         />
         <Route
-          path='/favorite'
+          path='/favorite/:id'
           element={isLoggedIn ? <Favorite/> : <Login/>}
         />
         <Route

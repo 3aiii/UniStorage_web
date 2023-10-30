@@ -102,12 +102,11 @@ router.post('/favorite', async(req,res)=>{
 })
 
 // QUERY FAVORTIE EACH USER
-router.get('/getfavorite',async(req,res)=>{   
-    const student_id  = req.query.id
-    console.log(student_id);
+router.get('/getfavorite/:id',async(req,res)=>{   
+    const student_id  = req.params.id
     let params = [student_id]
 
-    let mysql = `SELECT * FROM favorite 
+    let mysql = ` SELECT * FROM favorite 
     JOIN project ON favorite.project_id = project.project_id
     JOIN student ON project.student_id = student.student_id WHERE favorite.student_id = ?`
 

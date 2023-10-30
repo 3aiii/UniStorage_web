@@ -4,18 +4,12 @@ import {Link} from 'react-router-dom'
 const Post = ({post}) => {
   const PF = "../../../../backend/img/"
 
-  // Date Config
   const postDate = new Date(post.project_create);
-  const formatter = new Intl.DateTimeFormat('th-TH', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  const options = { year: 'numeric', month: 'long', day: 'numeric'};
+  const formattedDate = postDate.toLocaleDateString('en-US', options);
+  const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
 
-  const formattedDate = formatter.format(postDate);
-
+  console.log(keywords[2]);
   return (
     <div className='Container-Post' key={post.project_id}>
       <div className='Main-Box-Post'>
@@ -53,7 +47,9 @@ const Post = ({post}) => {
         <div className='Viewed-Post'>
           <div className='Viewed-btnAndView-Post'>
             <Link to={'/'} className='link Category-btn-Post'>
-              {post.category_name}
+              { 
+                keywords[post.category_id - 1]
+              }
             </Link>
             <span className='span-view-Post'>
               <i className="IconView fa-regular fa-eye"></i> 
