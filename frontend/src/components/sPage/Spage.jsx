@@ -2,12 +2,17 @@ import './Spage.css'
 import {useLocation} from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 const Spage = () => {
   const location = useLocation().pathname.split('/')[2]
   const [singlePost,setSinglPost] = useState('')
   const [formattedDate, setFormattedDate] = useState('')
+  const [isFavorited, setIsFavorited] = useState(false); 
+  const [Favorite,setFavorite] = useState([])
+  const { user } = useSelector((state)=> state.auth)
 
+  // FECTH SINGLE POST
   const fecthSinglePost = async () =>{
     const res = await axios.get(`http://localhost:3000/api/Post/${location}`)
     setSinglPost(res.data.data[0])
@@ -17,7 +22,19 @@ const Spage = () => {
     const options = { year: 'numeric', month: 'long', day: 'numeric'};
     const formattedDate = postDate.toLocaleDateString('en-US', options);
     setFormattedDate(formattedDate);
+  }
+  
+  // FAVORITE BUTTON
+  const favorite = async () => {
+    const isAlreadyFavorited = Favorite.some(item => item.student_id === singlePost.student_id && item.project_id === singlePost.project_id);
 
+    if (isAlreadyFavorited){
+      await axios.delete(`http://localhost:3000/api/Post/favorite_delete/${user.student_id}/${singlePost.project_id}`)
+    } else {
+      await axios.post(`http://localhost:3000/api/Post/favorite`,{ student_id: user.student_id, project_id: singlePost.project_id });
+    }
+    setIsFavorited(isAlreadyFavorited)
+    window.location.reload()
   }
   
   useEffect(()=>{
@@ -54,7 +71,7 @@ const Spage = () => {
             <button className='btn-download'>
               Download PDF
             </button>          
-            <button className='favorite-btn'>
+            <button className='favorite-btn' onClick={favorite}>
               <i className="IconNoneFavorite fa-solid fa-heart" id='IconFav'></i>
             </button>
           </div>

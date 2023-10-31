@@ -46,26 +46,4 @@ router.get('/:id',async(req,res)=>{
     }
 })
 
-// router.get('/forfavorite',async(req,res)=>{
-//     let sql = `SELECT * FROM project 
-//                 JOIN category ON project.category_id = category.category_id 
-//                 WHERE `
-    
-//     try {
-//         conn.query(
-//             sql,
-//             (err,result,field)=>{
-//                 if (err){
-//                     console.log(err);
-//                     res.json({status : 'error ',message : err})
-//                 } else{
-//                     res.json({status : 'ok ', data : result})
-//                 }
-//             }
-//         )
-//     } catch (error) {
-//         res.status(400).send(error)
-//     }
-// })
-
 module.exports = router

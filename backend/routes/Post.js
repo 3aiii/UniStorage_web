@@ -75,6 +75,7 @@ router.post('/create', Upload,async (req,res)=>{
     }
 })
 
+
 // INSERT FAVORITE
 router.post('/favorite', async(req,res)=>{
     const { student_id , project_id } = req.body
@@ -100,6 +101,29 @@ router.post('/favorite', async(req,res)=>{
         res.status(500).json({status : 'error',message : error})            
     }
 })
+
+// DELETE FAVORITE EACH USER
+router.delete('/favorite_delete/:student_id/:project_id', (req, res) => {
+    const student_id = req.params.student_id;
+    const project_id = req.params.project_id;
+    let mysql = 'DELETE FROM favorite WHERE favorite.student_id = ? AND favorite.project_id = ?';
+
+    try {
+        conn.query(
+                mysql,
+                [student_id, project_id],
+                (err, result, field) => {
+                    if (err) {
+                        res.status(400).json({ status: 'error', message: err });
+                    } else {
+                        res.json({ status: 'ok', data: result });
+                    }
+                }
+            )
+    } catch (error) {
+        res.json({ status: 'error', message: error });
+    }
+});
 
 // QUERY FAVORTIE EACH USER
 router.get('/getfavorite/:id',async(req,res)=>{   

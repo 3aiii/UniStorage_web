@@ -1,15 +1,44 @@
+import { useSelector } from 'react-redux'
 import './Post.css'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 
 const Post = ({post}) => {
   const PF = "../../../../backend/img/"
+  const { user } = useSelector((state)=> state.auth)
 
   const postDate = new Date(post.project_create);
   const options = { year: 'numeric', month: 'long', day: 'numeric'};
   const formattedDate = postDate.toLocaleDateString('en-US', options);
   const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
 
-  console.log(keywords[2]);
+  const [isFavorited, setIsFavorited] = useState(false); 
+  const [Favorite,setFavorite] = useState([])
+
+  
+  // FAVORITE BUTTON
+  const favorite = async () => {
+    const isAlreadyFavorited = Favorite.some(item => item.student_id === post.student_id && item.project_id === post.project_id);
+
+    if (isAlreadyFavorited){
+      await axios.delete(`http://localhost:3000/api/Post/favorite_delete/${user.student_id}/${post.project_id}`)
+    } else {
+      await axios.post(`http://localhost:3000/api/Post/favorite`,{ student_id: user.student_id, project_id: post.project_id });
+    }
+    setIsFavorited(isAlreadyFavorited)
+    window.location.reload()
+  }
+
+  const userfavorite = async () => {
+    const res = await axios.get(`http://localhost:3000/api/Post/getfavorite/${user.student_id}`)
+    setFavorite(res.data.data)
+  }
+  
+  useEffect(() => {
+    userfavorite();
+  }, []);
+
   return (
     <div className='Container-Post' key={post.project_id}>
       <div className='Main-Box-Post'>
@@ -56,7 +85,7 @@ const Post = ({post}) => {
               {post.project_viewer}
             </span>
           </div>
-          <button className='favorite-btn'>
+          <button className={`favorite-btn`} onClick={favorite}>
             <i className="IconNoneFavorite fa-solid fa-heart" id='IconFav'></i>
           </button>
         </div>
