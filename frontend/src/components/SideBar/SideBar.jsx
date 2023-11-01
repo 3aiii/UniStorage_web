@@ -27,7 +27,6 @@ const SideBar = () => {
           <SideBarTierList/>
           <SideBarTierList/>
           <SideBarTierList/>
-          <SideBarTierList/>
         </div>
       </div>
     </div>
