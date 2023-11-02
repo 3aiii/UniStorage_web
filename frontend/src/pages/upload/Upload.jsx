@@ -23,9 +23,11 @@ const Upload = () => {
 
             if(!allowedPDF.exec(file.name)){
                 e.target.value = ''
-                return ;
+                setPdfError('ไฟล์ผลงานต้องเป็นไฟล์นามสกุล .pdf เท่านั้น');
+            }else {
+                setfile_pdf(e.target.files[0]);
+                setPdfError(''); // ล้างข้อความผิดพลาดหากไฟล์ผลงานถูกต้อง
             }
-        setfile_pdf(e.target.files[0])
         }
     }
     
@@ -39,9 +41,11 @@ const Upload = () => {
 
             if(!allowedImg.exec(file.name)){
                 e.target.value = ''
-                return ;
+                setImgError('รูปภาพต้องเป็นไฟล์นามสกุล .png, .jpg, หรือ .jpeg เท่านั้น');  
+            }else{
+                setfile_img(e.target.files[0]);
+                setImgError(''); // ล้างข้อความผิดพลาดหากรูปภาพถูกต้อง
             }
-        setfile_img(e.target.files[0])
         }
     }
 
@@ -59,11 +63,22 @@ const Upload = () => {
         setAbstractError(!project_abstract ? '*กรุณากรอกบทคัดย่อ' : '');
         setImgError(!project_img_file ? '*กรุณาอัปโหลดรูปภาพประกอบ' : '');
         setPdfError(!project_pdf_file ? '*กรุณาอัปโหลดไฟล์ผลงาน' : '');
-        setTurnitinError(!project_turnitin ? '*กรุณากรอกผล Turnitin' : (project_turnitin > 100 ? '*ค่า Turnitin ต้องไม่เกิน 100' : ''));
+        
+        if (!project_turnitin) {
+            setTurnitinError('กรุณากรอกผล Turnitin');
+        } else {
+            setTurnitinError('');
+        }
+
+        if (project_turnitin > 100) {
+            setTurnitinError('ค่า Turnitin ต้องไม่เกิน 100');
+            return;
+        }
         
         if(!category_id){
             setCategoryError('กรุณาเลือกหมวดหมู่');
           } else{
+                setCategoryError('');
                 const data = new FormData()
                 data.append('student_id',user.student_id)
                 data.append('project_name',project_name)
@@ -118,13 +133,19 @@ const Upload = () => {
                         <input
                             type='text'
                             className='inputmain projectname'
-                            onChange={(e)=> setName(e.target.value)}
+                            onChange={(e)=> {
+                                setName(e.target.value);
+                                setProjectNameError('');
+                            }}
                     
                         />
                         {projectNameError && <div className='error-message'>{projectNameError}</div>}                        
                         <label className='lb Abstract'>บทคัดย่อ</label>
                         <textarea type='text'
-                            onChange={(e)=> setAbs(e.target.value)}
+                            onChange={(e)=> {
+                                setAbs(e.target.value);
+                                setAbstractError('');
+                            }}
                             className='inputmain Abstract'>
                         </textarea>
                         {abstractError && <div className='error-message'>{abstractError}</div>}
@@ -153,7 +174,10 @@ const Upload = () => {
                                 <input
                                     type='number'
                                     className='inputsub turnitin'
-                                    onChange={(e)=> setTurnitin(e.target.value)}            
+                                    onChange={(e)=> {
+                                        setTurnitin(e.target.value);
+                                        setTurnitinError('');
+                                    }}          
                                     placeholder='ข้อมูล turnitin 0 - 100'
                                 />
                                 {turnitinError && <div className='error-message'>{turnitinError}</div>}
@@ -167,7 +191,14 @@ const Upload = () => {
                                 <label className='lb-cat'>หมวดหมู่</label>
                                 <div className='box-select'>
                                     {/* {console.log(category_id)} */}
-                                    <select value={category_id} className='inputsub cat' placeholder='Select your category please' onChange={(e)=> setCategory(e.target.value)}>
+                                    <select value={category_id} 
+                                        className='inputsub cat' 
+                                        placeholder='Select your category please' 
+                                        onChange={(e)=> {
+                                            setCategory(e.target.value);
+                                            setCategoryError('');
+                                        }}>
+                                        
                                         <option value='0'>กรุณาเลือก</option>
                                         <option value='1'>Network</option>
                                         <option value='2'>Multimedia</option>

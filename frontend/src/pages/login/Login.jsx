@@ -31,7 +31,7 @@ const Login = () => {
       if (res){
         await swal.fire({
           title: 'ยินดีต้อนรับ!',
-          text : `คุณ ${res.data.data.student_fname} ${res.data.data.student_lname}`,
+          text : `ยินดีต้อนรับ คุณ ${res.data.data.student_fname} ${res.data.data.student_lname}`,
           icon: 'success',    
           timer: 1200,
           timerProgressBar: true, 
@@ -46,7 +46,6 @@ const Login = () => {
         setProjectNameError(TextFail[0])
     }
   }
-  
   return (
     <div className='Container-login'>  
       <div className='main-box-login'>

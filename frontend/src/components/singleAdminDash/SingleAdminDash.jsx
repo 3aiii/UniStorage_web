@@ -8,6 +8,27 @@ const SingleAdminDash = () => {
   const [singlePost,setSinglPost] = useState('')
   const [formattedDate, setFormattedDate] = useState('')
 
+   // HANDLE DOWNLOAD PDF
+   const handleDownload  = async () =>{
+    
+    await axios.get(`http://localhost:3000/api/Post/PDF/${location}`,{
+      responseType : 'blob'
+    })
+    .then((res)=>{
+      const blob = new Blob([res.data],{type : 'application/pdf'})
+
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${singlePost.project_pdf_file}`
+      link.click()
+      URL.revokeObjectURL(url)
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+
+
   // FECTH SINGLE POST
   const fecthSinglePost = async () =>{
     const res = await axios.get(`http://localhost:3000/api/Post/${location}`)
@@ -102,7 +123,7 @@ const HandleReject = async () =>{
           </div>
           <div className='interactive-button'>
             <div className='action-DashPost'>
-              <button className='btn download-pdf'><i className="IconDashAdmin fa-solid fa-download"></i></button>
+              <button className='btn download-pdf' onClick={handleDownload}><i className="IconDashAdmin fa-solid fa-download"></i></button>
               <button className='btn approve' onClick={HandleApprove}><i className="IconDashAdmin fa-solid fa-check"></i></button>
               <button className='btn reject' onClick={HandleReject}><i className="IconDashAdmin fa-solid fa-xmark"></i></button>
             </div>
