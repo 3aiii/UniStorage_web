@@ -12,6 +12,27 @@ const Spage = () => {
   const [Favorite,setFavorite] = useState([])
   const { user } = useSelector((state)=> state.auth)
 
+  // HANDLE DOWNLOAD PDF
+  const handleDownload  = async () =>{
+    
+    await axios.get(`http://localhost:3000/api/Post/PDF/${location}`,{
+      responseType : 'blob'
+    })
+    .then((res)=>{
+      const blob = new Blob([res.data],{type : 'application/pdf'})
+
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${singlePost.project_pdf_file}`
+      link.click()
+      URL.revokeObjectURL(url)
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+
+
   // FECTH SINGLE POST
   const fecthSinglePost = async () =>{
     const res = await axios.get(`http://localhost:3000/api/Post/${location}`)
@@ -23,7 +44,7 @@ const Spage = () => {
     const formattedDate = postDate.toLocaleDateString('en-US', options);
     setFormattedDate(formattedDate);
   }
-  
+
   // FAVORITE BUTTON
   const favorite = async () => {
     const isAlreadyFavorited = Favorite.some(item => item.student_id === singlePost.student_id && item.project_id === singlePost.project_id);
@@ -68,7 +89,7 @@ const Spage = () => {
             </span>            
           </div>
           <div className='interactive-button'>
-            <button className='btn-download'>
+            <button className='btn-download' onClick={handleDownload}>
               Download PDF
             </button>          
             <button className='favorite-btn' onClick={favorite}>

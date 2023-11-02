@@ -3,6 +3,7 @@ import { persistReducer,persistStore } from "redux-persist"
 import storage from "redux-persist/lib/storage";
 import thunk from 'redux-thunk';
 import authSlice from "./authSlice";
+import searchSlice from "./searchSlice";
 
 const persistConfig = {
     key : "root",
@@ -13,6 +14,7 @@ const persistedReducer = persistReducer(
     persistConfig,
     combineReducers({
         auth : authSlice,
+        search: searchSlice,
     })
 )
 

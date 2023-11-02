@@ -4,18 +4,32 @@ const Upload = require('../middleware/Upload')
 
 // QUERY POST
 router.get('/getpost',async(req,res)=>{    
+    const search = req.query.search
+
     let params = []
     let mysql = `SELECT * FROM category 
     JOIN project ON category.category_id = project.category_id
     JOIN student ON project.student_id = student.student_id  ORDER BY project_id`
     
-    conn.query(mysql,params,(err,result,field)=>{
-        if(err){
-            res.json({status : 'error ',message : err})
-        } else{
-            res.json({status : 'ok', data : result})
-        }
-    })
+    if(search){
+        // console.log('in searh : ',search);
+        mysql = `SELECT * FROM category 
+            JOIN project ON category.category_id = project.category_id
+            JOIN student ON project.student_id = student.student_id WHERE project.project_name LIKE ?`
+        params.push('%'+search+'%')
+    }
+    
+    try {
+        conn.query(mysql,params,(err,result,field)=>{
+            if(err){
+                res.json({status : 'error ',message : err})
+            } else{
+                res.json({status : 'ok', data : result})
+            }
+        })
+    } catch (error) {
+        res.json({status : 'error' , message : error})
+    }
 })
 
 // QUERY SINGLE POST
@@ -196,6 +210,33 @@ router.put('/reject', async(req,res)=>{
         
     } catch (error) {
         res.json({status : 'error'  , message : error})
+    }
+})
+
+// Download PDF
+router.get('/PDF/:id',async(req,res)=>{
+    const id = req.params.id
+    let mysql = `SELECT project_pdf_file,project_pdf_path FROM project WHERE project_id = ?`
+    
+    try {
+        conn.query(
+            mysql,
+            [id],
+            (err,result,field)=>{
+                if(err){
+                    res.status(404).json({message : err})
+                }
+                const { project_pdf_path, project_pdf_filename } = result[0];
+                // download method if you want to get download to your computer
+                res.download(project_pdf_path, project_pdf_filename, (err) => {
+                    if (err) {
+                      res.sendStatus(500).json({message : err});
+                    }
+                })
+            }   
+        )
+    } catch (error) {
+        res.status(400).send(error)
     }
 })
 

@@ -1,36 +1,17 @@
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 import NavBar from '../../components/Navbar/NavBar'
 import Posts from '../../components/Posts/Posts'
 import SideBar from '../../components/SideBar/SideBar'
 import './Home.css'
 
 const Home = () => {
-  // Authen API
-  const Authen = async () =>{
-    // const token = localStorage.getItem('token')
-    // await axios.post("http://localhost:3000/api/Auth/authen",{
-    //   headers : {
-    //     'Authorization': `Bearer ${token}`
-    //   }
-    // }).then((res) => {
-    //   if (res.data.status === 'ok'){
-    //     alert('authen success !')
-    //   } else{
-    //     alert('authen fail')
-    //     window.location = '/login'        
-    //   }
-    // })
-  } 
-
-  useEffect(()=>{
-    Authen()
-  },[])
+  const [search, setSearch] = useState('');
 
   return (
     <div className='Container-Home'>
-        <NavBar/>
+        <NavBar onSearchChange={setSearch} />
         <div className='Main-Home'>
-          <Posts/>  
+          <Posts search={search} />  
           <SideBar/>
         </div>
     </div>

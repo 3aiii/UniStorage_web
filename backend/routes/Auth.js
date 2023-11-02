@@ -106,5 +106,4 @@ router.post('/loginadmin',async (req,res)=>{
     }
 })
 
-
 module.exports = router

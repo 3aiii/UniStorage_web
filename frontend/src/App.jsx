@@ -10,6 +10,7 @@ import Upload from "./pages/upload/Upload";
 import Favorite from "./pages/favorite/Favorite";
 import AdminDashBoard from "./pages/adminDashboard/AdminDashBoard";
 import Spost from "./pages/spost/Spost";
+import SdashPost from "./pages/SingleAdmin/SdashPost";
 import AdminEditUser from "./pages/adminEditUser/AdminEditUser";
 import AdminSingleEditUser from "./pages/adminSingleEditUser/AdminSingleEditUser";
 import LoginAdmin from "./pages/adminLogin/LoginAdmin";
@@ -52,6 +53,10 @@ function App() {
         <Route
           path='/adminDash'
           element={isLoggedIn ? <AdminDashBoard/>:<LoginAdmin/>}
+        />
+        <Route
+          path='/singleAdminDash/:id'
+          element={isLoggedIn ? <SdashPost/>:<LoginAdmin/>}
         />
         <Route
           path='/adminEditUser'

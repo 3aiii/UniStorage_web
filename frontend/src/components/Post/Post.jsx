@@ -11,11 +11,10 @@ const Post = ({post}) => {
   const postDate = new Date(post.project_create);
   const options = { year: 'numeric', month: 'long', day: 'numeric'};
   const formattedDate = postDate.toLocaleDateString('en-US', options);
-  const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
 
+  const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
   const [isFavorited, setIsFavorited] = useState(false); 
   const [Favorite,setFavorite] = useState([])
-
   
   // FAVORITE BUTTON
   const favorite = async () => {

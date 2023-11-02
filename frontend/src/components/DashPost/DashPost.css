@@ -1,8 +1,8 @@
 .Box-DashPost{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 0px 30px 0px;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding: 20px 0px 30px 0px;
     border-bottom: 1px solid #DEDEDE;
 }
 
@@ -10,6 +10,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 5px;
 }
 
 .DashPost-img{
@@ -27,13 +28,23 @@
     color: #8c8c8c;
 }
 
+
+/* P-DASHPOST */
+.p-DashPost{
+    color: #111;
+}
+
+.p-h1{
+    font-size: 20px;
+    margin: 5px 0px;
+}
+
 .DashPost-topic{
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    width: 500px;
-    height: 20px;
+    opacity: 0.8;
 }
 
 /* button */

@@ -46,7 +46,7 @@ const Login = () => {
         setProjectNameError(TextFail[0])
     }
   }
-  console.log(TextFail);
+  
   return (
     <div className='Container-login'>  
       <div className='main-box-login'>

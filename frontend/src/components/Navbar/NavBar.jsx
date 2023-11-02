@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom'
 import swal from 'sweetalert2';
 import { logout } from '../../context/authSlice';
 import { useState } from 'react';
+import { setSearch } from '../../context/searchSlice.js'
 
 const NavBar = () => {
+
+    // const [search,setSearch] = useState('')
     const dispatch = useDispatch();
     const { user } = useSelector((state)=> state.auth)
 
@@ -24,6 +27,11 @@ const NavBar = () => {
           }
         )  
     }
+
+    const handleSearchChange = (value) => {
+        dispatch(setSearch(value));
+    };
+
     return (
         <div className='Container-NavBar'>
             <div className='main-box-NavBar'>
@@ -41,7 +49,9 @@ const NavBar = () => {
                             type='text'
                             className='search-NavBar'
                             placeholder='Search'
-                            onChange={(e)=>setSearch(e.target.value)}
+                            onChange={(e)=>{
+                                handleSearchChange(e.target.value)    
+                            }}
                         />
                     </div>
                 </div>

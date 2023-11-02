@@ -1,61 +1,12 @@
 import './DashPost.css'
 import axios from 'axios';
 import swal from 'sweetalert2';
+import {Link} from 'react-router-dom'
 
 const DashPost = ({DashPost}) => {
-
-    // APPROVE API
-    const HandleApprove = async () =>{
-        const Dashboard_Data = {
-            project_id : DashPost.project_id
-        }
-        
-        await swal.fire({
-            title: 'คุณต้องการเผยแผร่ผลงานนี้หรือไม่!',
-            text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
-            icon: 'question',
-            confirmButtonText: 'ตกลง',
-            cancelButtonText: 'ยกเลิก',
-            showCancelButton: true,
-            preConfirm: async () => {
-              await axios.put('http://localhost:3000/api/Post/approve', Dashboard_Data);
-              await swal.fire({
-                  title: 'ได้เผยแผร่ผลงานเรียบร้อย',
-                  icon: 'success',
-                  confirmButtonText: 'ตกลง',
-                  showCancelButton: false,
-                  timer: 1200
-                });
-                window.location.replace('/adminDash');
-            }
-        });
-    }
-    
-    // REJECT API
-    const HandleReject = async () =>{
-        const Dashboard_Data = {
-            project_id : DashPost.project_id
-        }
-        await swal.fire({
-            title: 'คุณต้องการให้แก้ผลงานนี้หรือไม่!',
-            text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
-            icon: 'question',
-            confirmButtonText: 'ตกลง',
-            cancelButtonText: 'ยกเลิก',
-            showCancelButton: true,
-            preConfirm: async () => {
-                await axios.put('http://localhost:3000/api/Post/reject', Dashboard_Data);
-                await swal.fire({
-                title: 'ได้ปฏิเสธผลงานนี้เรียบร้อย',
-                icon: 'success',
-                confirmButtonText: 'ตกลง',
-                showCancelButton: false,
-                timer: 1200
-                });
-                window.location.replace('/adminDash');
-        }
-        });
-    }
+    const postDate = new Date(DashPost.project_create);
+    const options = { year: 'numeric', month: 'long', day: 'numeric'};
+    const formattedDate = postDate.toLocaleDateString('en-US', options);
 
     return (
         <div className='Container-DashPost'>            
@@ -68,15 +19,12 @@ const DashPost = ({DashPost}) => {
                     />
                     <h3 className='DashPost-user'>{DashPost.student_username}</h3>
                     <div className='line-Post'></div>
-                    <span className='DashPost-date'>{DashPost.project_create}</span>
+                    <span className='DashPost-date'>{formattedDate}</span>
+                </div>
+                <Link to={`/singleAdminDash/${DashPost.project_id}`} className='link p-DashPost'>
+                    <h1 className='p-h1'>{DashPost.project_name}</h1>
                     <p className='DashPost-topic'>{DashPost.project_abstract}</p>
-                </div>
-                <div className='action-DashPost'>
-                    <button className='btn download-pdf'><i className="IconDashAdmin fa-solid fa-download"></i></button>
-                    <button className='btn approve' onClick={HandleApprove}><i className="IconDashAdmin fa-solid fa-check"></i></button>
-                    <button className='btn reject' onClick={HandleReject}><i className="IconDashAdmin fa-solid fa-xmark"></i></button>
-                </div>
-
+                </Link>
             </div>
         </div>
     )

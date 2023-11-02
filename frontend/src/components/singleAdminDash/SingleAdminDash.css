@@ -1,0 +1,17 @@
+.Container-SingleAdminDash{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.interactive-view-cat-AdminDash{
+    display: flex;
+    align-items: center;
+}
+
+.interactive-p{
+    font-size: 20px;
+    opacity: 0.5;
+}
