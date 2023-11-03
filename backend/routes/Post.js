@@ -212,7 +212,7 @@ router.put('/reject', async(req,res)=>{
     }
 })
 
-// Download PDF
+// DOWNLOAD PDF
 router.get('/PDF/:id',async(req,res)=>{
     const id = req.params.id
     let mysql = `SELECT project_pdf_file,project_pdf_path FROM project WHERE project_id = ?`
@@ -238,5 +238,52 @@ router.get('/PDF/:id',async(req,res)=>{
         res.status(400).send(error)
     }
 })
+
+// COUNT PAGE
+router.put('/singlePage/:id', async (req, res) => {
+    const slug = req.params.id;
+    let mysql = 'UPDATE project SET project_viewer = project_viewer + 1 WHERE project_id = ?'
+
+    try {
+        conn.query(
+                mysql,
+                [slug],
+                (err, result) => {
+                    if (err) {
+                        res.json({status : 'Error', message : err})
+                    } else{
+                        res.json({status : 'Success', data : result})
+                    }
+                }
+            ); 
+    } catch (error) {
+        res.status(500).json({status : 'error', message : error})
+    }
+});
+
+
+// TREND QUERY
+router.get('/',async(req,res)=>{
+    let mysql = `SELECT * FROM category 
+    JOIN project ON category.category_id = project.category_id
+    JOIN student ON project.student_id = student.student_id ORDER BY project_viewer DESC LIMIT 5`
+
+    try {
+        conn.query(
+            mysql,
+            [],
+            (err,result,field)=>{
+                if(err){
+                    res.json({status : 'error',message : err})
+                } else{
+                    res.json({status : 'success',data : result})
+                }
+            }
+            )
+        } catch (error) {
+            res.status(500).json({status : 'error',message : error})            
+        }
+    }
+)
 
 module.exports = router

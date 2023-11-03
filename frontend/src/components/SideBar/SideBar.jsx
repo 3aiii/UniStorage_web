@@ -5,28 +5,28 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const SideBar = () => {
-  // const location = useLocation().pathname.split('/')[2]
-  // const [singlePost,setSinglPost] = useState([])
+  const location = useLocation().pathname.split('/')[2]
+  const [singlePost,setSinglPost] = useState([])
 
-  // const feacthPostTierList = async () =>{
-  //   const res = await axios.get(`http://localhost:3000/api/Post/${location}`)
-  //   setSinglPost(res.data.data[0])
-  // }
+  const feacthPostTierList = async () =>{
+    const res = await axios.get(`http://localhost:3000/api/Post/`)
+    setSinglPost(res.data.data)
+  }
 
-  // useEffect(()=>{
-  //   feacthPostTierList()
-  // },[])
+  useEffect(()=>{
+    feacthPostTierList()
+  },[])
 
   return (
     <div className='Container-SideBar'>
       <div className='Main-Box-SideBar'>
         <h1 className='h1-TopFive'>TOP 5 MOST VIEWED</h1>
         <div className='TierList-box'>
-          <SideBarTierList/>
-          <SideBarTierList/>
-          <SideBarTierList/>
-          <SideBarTierList/>
-          <SideBarTierList/>
+          {
+            singlePost.map((post)=>(
+              <SideBarTierList post = {post}/>
+            ))
+          }
         </div>
       </div>
     </div>

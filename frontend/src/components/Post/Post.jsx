@@ -15,7 +15,12 @@ const Post = ({post}) => {
   const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
   const [isFavorited, setIsFavorited] = useState(false); 
   const [Favorite,setFavorite] = useState([])
-  
+
+  // HANDLE VIWER 
+  const HandleViewer = async() =>{
+    await axios.put(`http://localhost:3000/api/Post/singlePage/${post.project_id}`)
+  }
+
   // FAVORITE BUTTON
   const favorite = async () => {
     const isAlreadyFavorited = Favorite.some(item => item.student_id === post.student_id && item.project_id === post.project_id);
@@ -57,7 +62,7 @@ const Post = ({post}) => {
         </div>
         <div className='Info-Post'>
           <div className='Info-H1AndP'>
-            <Link className='link h1-Post' to={`/singlePage/${post.project_id}`}>
+            <Link className='link h1-Post' to={`/singlePage/${post.project_id}`} onClick={HandleViewer}>
               {post.project_name}
               <p className='p-Post'>
                 {

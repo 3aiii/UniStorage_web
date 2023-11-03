@@ -32,7 +32,6 @@ const Spage = () => {
     })
   }
 
-
   // FECTH SINGLE POST
   const fecthSinglePost = async () =>{
     const res = await axios.get(`http://localhost:3000/api/Post/${location}`)

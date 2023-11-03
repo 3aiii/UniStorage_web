@@ -1,7 +1,7 @@
 import './SideBarTierList.css'
 import { Link } from 'react-router-dom'
 
-const SideBarTierList = () => {
+const SideBarTierList = ({post}) => {
     return (
         <div className='Container-SideBarTierList'>
             <div className='Main-Box-SideBarTierList'>
@@ -10,19 +10,16 @@ const SideBarTierList = () => {
                     alt='SideBarTierList-img'
                     className='SideBarTierList-img'
                 />
-                <Link to='/singlePage/6' className='link SideBarTierList-p'>
-                    Lorem Ipsum is simply dummy text of the printing 
-                    and typesetting industry. Lorem Ipsum has been
-                    the industry's standard dummy text ever since 
-                    the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type
-                    specimen book. 
+                <Link to={`/singlePage/${post.project_id}`} className='link SideBarTierList-p'>
+                    {
+                        post.project_name
+                    }
                 </Link>
             </div>
             <div className='TierList-Viewed'>
                 <div className='Info-Iconviewd'>
                     <i className="IconView fa-regular fa-eye"></i> 
-                    3245 view
+                    {post.project_viewer} view
                 </div>
             </div>
         </div>
