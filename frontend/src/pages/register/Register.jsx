@@ -21,13 +21,13 @@ const Register = () => {
   const HandleRegister = async (e) =>{
     e.preventDefault()
 
-    setFirstNameError(!fname ? '*กรุณากรอกชื่อของคุณ' : '')
-    setLastNameError(!lname ? '*กรุณากรอกนามสกุลของคุณ' : '')
-    setEmailError(!email ? '*กรุณากรอกอีเมล' : '')
-    setUsernameError(!username ? '*กรุณากรอกชื่อผู้ใช้ของคุณ' : '')
-    setPasswordError(!password ? '*กรุณากรอกรหัสผ่าน' : '')
-
-    try {
+    if (!fname || !lname || !email || !username || !password) {
+      setFirstNameError(!fname ? '*กรุณากรอกชื่อของคุณ' : '')
+      setLastNameError(!lname ? '*กรุณากรอกนามสกุลของคุณ' : '')
+      setEmailError(!email ? '*กรุณากรอกอีเมล' : '')
+      setUsernameError(!username ? '*กรุณากรอกชื่อผู้ใช้ของคุณ' : '')
+      setPasswordError(!password ? '*กรุณากรอกรหัสผ่าน' : '')
+    } else{
         const Data = {
           username : username,
           password : password,
@@ -35,31 +35,31 @@ const Register = () => {
           lname : lname,
           email : email
         }
-
-        if(Data){
-          await swal.fire({
-            title: 'คุณต้องการบันทึกหรือไม่!',
-            text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
-            icon: 'question',
-            confirmButtonText: 'ตกลง',
-            cancelButtonText: 'ยกเลิก',
-            showCancelButton : true,
-            preConfirm : async () =>{
-              await axios.post("http://localhost:3000/api/Auth/register",Data)
-              await swal.fire({
-                title: 'บันทึกข้อมูลเสร็จสิ้น',
-                icon: 'success',
-                confirmButtonText: 'ตกลง',
-                showCancelButton : false,
-                timer: 1200
-              })
-              window.location = '/login'
-            }
-          })
+        
+        try {
+            await swal.fire({
+              title: 'คุณต้องการบันทึกหรือไม่!',
+              text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
+              icon: 'question',
+              confirmButtonText: 'ตกลง',
+              cancelButtonText: 'ยกเลิก',
+              showCancelButton : true,
+              preConfirm : async () =>{
+                await axios.post("http://localhost:3000/api/Auth/register",Data)
+                await swal.fire({
+                  title: 'บันทึกข้อมูลเสร็จสิ้น',
+                  icon: 'success',
+                  confirmButtonText: 'ตกลง',
+                  showCancelButton : false,
+                  timer: 1200
+                })
+                window.location = '/login'
+              }
+            })
+        } catch (error) {
+          console.log(`Got some error = ${error}`);
         }
-    } catch (error) {
-      console.log(`Got some error = ${error}`);
-    }
+      }
   }
   
   return (

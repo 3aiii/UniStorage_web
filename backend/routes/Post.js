@@ -88,6 +88,33 @@ router.post('/create', Upload,async (req,res)=>{
     }
 })
 
+// UPDATE POST
+router.put('/update',async (req,res)=>{
+    const { project_id,project_name ,project_abstract } = req.body
+    // const project_img_file = req.files.project_img_file[0].filename; 
+    // const project_pdf_file = req.files.project_pdf_file[0].filename; 
+    // const project_pdf_path = req.files.project_pdf_file[0].path;
+
+    let mysql = `UPDATE project SET project_name = ?, project_abstract = ? WHERE project_id = ? `
+
+    const params = [project_name,project_abstract,project_id]
+
+    try {
+        conn.query(
+            mysql,
+            params,
+            (err,result,field)=>{
+                if(err){
+                    res.json({status : 'error' ,message : err})
+                } else{
+                    res.json({status : 'ok', data : result})
+                }
+            }
+        )
+    } catch (error) {
+        res.status(500).json({status : 'error',message : error})            
+    }
+})
 
 // INSERT FAVORITE
 router.post('/favorite', async(req,res)=>{
@@ -162,11 +189,11 @@ router.get('/getfavorite/:id',async(req,res)=>{
 
 // APPROVE POST 
 router.put('/approve', async(req,res)=>{
-    const {project_id} = req.body
+    const {project_id,teacher_id} = req.body
     // console.log(project_id);
     let mysql = `UPDATE project
-                SET project_status = 'Active' WHERE project_id = ?`
-    const params = [project_id]
+                SET project_status = 'Active',teacher_id = ? WHERE project_id = ?`
+    const params = [teacher_id,project_id]
     
     try {
         conn.query(
@@ -188,11 +215,10 @@ router.put('/approve', async(req,res)=>{
 
 // REJECT POST 
 router.put('/reject', async(req,res)=>{
-    const {project_id} = req.body
-    // console.log(project_id);
+    const {project_id,teacher_id} = req.body
     let mysql = `UPDATE project
-                SET project_status = 'Reject' WHERE project_id = ?`
-    const params = [project_id]
+                SET project_status = 'Reject',teacher_id = ? WHERE project_id = ?`
+    const params = [teacher_id,project_id]
     
     try {
         conn.query(

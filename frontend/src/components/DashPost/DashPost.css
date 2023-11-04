@@ -8,10 +8,27 @@
 
 .Info-DashPost{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
     margin-bottom: 5px;
 }
+
+.Info-DashPost-left{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.turitin-upper-p{
+    color: #ff3535;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.IconDanger{
+    margin: 5px;
+}
+
 
 .DashPost-img{
     width: 42px;

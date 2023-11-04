@@ -99,6 +99,7 @@ input.ip.email{
     font-size: 18px;
     color: #f1f1f1;
     transition: 0.5s;
+    text-align: center;
 }
 
 .btnSeditUser.cancel{

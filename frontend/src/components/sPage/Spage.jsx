@@ -10,7 +10,25 @@ const Spage = () => {
   const [formattedDate, setFormattedDate] = useState('')
   const [isFavorited, setIsFavorited] = useState(false); 
   const [Favorite,setFavorite] = useState([])
+  
+  // UPDATE PARAMETER
+  const [Title,setTitle] = useState('')
+  const [Abstract,setAbstract] = useState('')
+  const [update, setUpdate] = useState(false)
+
   const { user } = useSelector((state)=> state.auth)
+  const PF = "http://localhost:3000/img/"
+
+  // HANDLE UPDATE
+  const HandleUpdate = async () =>{
+    await axios.put('http://localhost:3000/api/Post/update',{
+      project_id : singlePost.project_id,
+      project_name : Title || singlePost.project_name,
+      project_abstract : Abstract || singlePost.project_abstract
+    })
+
+    window.location.reload()
+  }
 
   // HANDLE DOWNLOAD PDF
   const handleDownload  = async () =>{
@@ -47,25 +65,30 @@ const Spage = () => {
   // FAVORITE BUTTON
   const favorite = async () => {
     const isAlreadyFavorited = Favorite.some(item => item.student_id === singlePost.student_id && item.project_id === singlePost.project_id);
-
+    
     if (isAlreadyFavorited){
       await axios.delete(`http://localhost:3000/api/Post/favorite_delete/${user.student_id}/${singlePost.project_id}`)
     } else {
       await axios.post(`http://localhost:3000/api/Post/favorite`,{ student_id: user.student_id, project_id: singlePost.project_id });
     }
+
     setIsFavorited(isAlreadyFavorited)
     window.location.reload()
   }
   
   useEffect(()=>{
     fecthSinglePost()
-  },[])
+  },[location])
   
   return (
     <div className='container-Spage'>
       <div className='main-Spage'>
         <h1 className='h1-Spage'>
-          {singlePost.project_name}
+          {
+            update ? <input autoFocus type='text' defaultValue={singlePost.project_name} className='input-h1-update' onChange={(e)=>setTitle(e.target.value)}/> : (
+              singlePost.project_name
+            )
+          }
         </h1>
         <div className='User-info'>
           <img
@@ -94,21 +117,35 @@ const Spage = () => {
             <button className='favorite-btn' onClick={favorite}>
               <i className="IconNoneFavorite fa-solid fa-heart" id='IconFav'></i>
             </button>
+            {
+              user.student_id === singlePost.student_id && (
+                <div className='btn-update' onClick={()=> setUpdate(true)}>
+                  <i class="IconUpdatePost fa-solid fa-pen-to-square"></i>
+                </div>
+              ) 
+            }
           </div>
         </div>
         <div className='Spage-info'>
           <img
-            src='https://images6.fanpop.com/image/photos/43100000/Ryujin-ryujin-itzy-43197437-300-300.png'
+            src={PF + singlePost.project_img_file}
             alt='SpageInfo'
             className='Spage-info-img'
           />
           <div className='Spage-main-info'>
             <h4 className='Spage-h4'>บทคัดย่อ</h4>
             <p className='Spage-p'>
-              {singlePost.project_abstract}
+              {
+                update ? <textarea defaultValue={singlePost.project_abstract} className='input-p-update' onChange={(e)=>setAbstract(e.target.value)}/> : (
+                  singlePost.project_abstract
+                )
+              }
             </p>
           </div>
         </div>
+        {
+          update && <button className='btn-submit-update' onClick={HandleUpdate}>Update</button> 
+        }
       </div>
     </div>
   )

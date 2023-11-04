@@ -3,10 +3,13 @@ import {useLocation} from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 import swal from 'sweetalert2'
+import { useSelector } from 'react-redux'
 const SingleAdminDash = () => {
   const location = useLocation().pathname.split('/')[2]
   const [singlePost,setSinglPost] = useState('')
   const [formattedDate, setFormattedDate] = useState('')
+  const {user} = useSelector((state)=>state.auth)
+  const PF = "http://localhost:3000/img/"
 
    // HANDLE DOWNLOAD PDF
    const handleDownload  = async () =>{
@@ -44,7 +47,8 @@ const SingleAdminDash = () => {
    // APPROVE API
    const HandleApprove = async () =>{
     const Dashboard_Data = {
-        project_id : singlePost.project_id
+        project_id : singlePost.project_id,
+        teacher_id : user.teacher_id
     }
     
     await swal.fire({
@@ -71,7 +75,8 @@ const SingleAdminDash = () => {
 // REJECT API
 const HandleReject = async () =>{
     const Dashboard_Data = {
-        project_id : singlePost.project_id
+        project_id : singlePost.project_id,
+        teacher_id : user.teacher_id
     }
     await swal.fire({
         title: 'คุณต้องการให้แก้ผลงานนี้หรือไม่!',
@@ -104,15 +109,28 @@ const HandleReject = async () =>{
         <h1 className='h1-Spage'>
           {singlePost.project_name}
         </h1>
-        <div className='User-info'>
-          <img
-            src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_s-qTS_S74BAdcj1XFstXdMSkfWdCxCV40A&usqp=CAU'
-            alt='SpageInfo'
-            className='img-Spage'
-          />
-          <h3 className='Username-h3'>{singlePost.student_username}</h3>
-          <div className='line-Post'></div>
-          <span className='Date-span'>{formattedDate}</span>
+        <div className='User-info-admin'>
+          <div className='Info-DashPost-left'>
+            <img
+              src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_s-qTS_S74BAdcj1XFstXdMSkfWdCxCV40A&usqp=CAU'
+              alt='SpageInfo'
+              className='img-Spage'
+            />
+            <h3 className='Username-h3'>{singlePost.student_username}</h3>
+            <div className='line-Post'></div>
+            <span className='Date-span'>{formattedDate}</span>
+          </div>
+          <div className='turitin-upper'>
+            {
+              singlePost.project_turnitin > 20 && (
+                <p className='turitin-upper-p'>
+                    <i class="IconDanger fa-solid fa-triangle-exclamation"></i>
+                        ค่า turnitin = {singlePost.project_turnitin} มากกว่า 20 ฉะนั้น กรุณาตรวจสอบเพื่อความมั่นใจอีกครั้ง 
+                    <i class="IconDanger fa-solid fa-triangle-exclamation"></i>
+                </p>
+              )   
+            }
+          </div>
         </div>
         <div className='interactive-Spage'>
           <div className='interactive-view-cat-AdminDash'>
@@ -131,7 +149,7 @@ const HandleReject = async () =>{
         </div>
         <div className='Spage-info'>
           <img
-            src='https://images6.fanpop.com/image/photos/43100000/Ryujin-ryujin-itzy-43197437-300-300.png'
+            src={PF + singlePost.project_img_file}
             alt='SpageInfo'
             className='Spage-info-img'
           />

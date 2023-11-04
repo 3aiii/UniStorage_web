@@ -1,16 +1,24 @@
+import axios from 'axios'
 import './SideBarTierList.css'
 import { Link } from 'react-router-dom'
 
 const SideBarTierList = ({post}) => {
+    const PF = "http://localhost:3000/img/"
+
+     // HANDLE VIWER 
+    const HandleViewer = async() =>{
+        await axios.put(`http://localhost:3000/api/Post/singlePage/${post.project_id}`)
+    }
+
     return (
         <div className='Container-SideBarTierList'>
             <div className='Main-Box-SideBarTierList'>
                 <img
-                    src='https://assets.incisivemedia.com/production/cover/images/branding_logo.png'
+                    src={PF + post.project_img_file}
                     alt='SideBarTierList-img'
                     className='SideBarTierList-img'
                 />
-                <Link to={`/singlePage/${post.project_id}`} className='link SideBarTierList-p'>
+                <Link to={`/singlePage/${post.project_id}`} className='link SideBarTierList-p' onClick={HandleViewer}>
                     {
                         post.project_name
                     }

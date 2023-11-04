@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const Post = ({post}) => {
-  const PF = "../../../../backend/img/"
+  const PF = "http://localhost:3000/img/"
   const { user } = useSelector((state)=> state.auth)
 
   const postDate = new Date(post.project_create);
@@ -15,7 +15,8 @@ const Post = ({post}) => {
   const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
   const [isFavorited, setIsFavorited] = useState(false); 
   const [Favorite,setFavorite] = useState([])
-
+  // console.log(isFavorited);
+  
   // HANDLE VIWER 
   const HandleViewer = async() =>{
     await axios.put(`http://localhost:3000/api/Post/singlePage/${post.project_id}`)

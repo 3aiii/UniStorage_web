@@ -6,6 +6,11 @@
     margin-top: 20px;
 }
 
+.User-info-admin{
+    display: flex;
+    justify-content: space-between;
+}
+
 .interactive-view-cat-AdminDash{
     display: flex;
     align-items: center;

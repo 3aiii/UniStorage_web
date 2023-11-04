@@ -101,6 +101,7 @@
     cursor: pointer;
     letter-spacing: 1px;
     transition: 0.3s;
+    outline: none;
 }
 
 .button-register:hover{

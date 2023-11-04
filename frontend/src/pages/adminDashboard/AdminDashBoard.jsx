@@ -7,16 +7,15 @@ import { useEffect, useState } from 'react'
 
 const AdminDashBoard = () => {
   const [DashPosted,setDashPost] = useState([])
-  // console.log(DashPost);
 
   // Post API
   const FecthDashPost = async () =>{
       const res = await axios.get('http://localhost:3000/api/Post/getpost');
       setDashPost(res.data.data);  
   }
-
+  
   useEffect(()=>{
-      FecthDashPost()
+    FecthDashPost()
   },[])
 
   return (

@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './SeditUser.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -24,6 +24,7 @@ const SeditUser = () => {
         setStudent_email(res.data.data[0].student_email);
     }
 
+    // HANDLE SUBMIT
     const HandleSubmit = async (e) =>{
         e.preventDefault()    
 
@@ -118,7 +119,7 @@ const SeditUser = () => {
                         />                
                     </div>
                     <div className='btn-container'>
-                        <button className='btnSeditUser cancel' type='reset'>ยกเลิก</button>
+                        <button className='btnSeditUser cancel' type='reset' onClick={()=> window.history.back()}>ยกเลิก</button>
                         <button className='btnSeditUser submit' type='submit'>บันทึก</button>
                     </div>
                 </form>

@@ -23,7 +23,7 @@ const Upload = () => {
 
             if(!allowedPDF.exec(file.name)){
                 e.target.value = ''
-                setPdfError('ไฟล์ผลงานต้องเป็นไฟล์นามสกุล .pdf เท่านั้น');
+                setPdfError('*ไฟล์ผลงานต้องเป็นไฟล์นามสกุล .pdf เท่านั้น');
             }else {
                 setfile_pdf(e.target.files[0]);
                 setPdfError(''); // ล้างข้อความผิดพลาดหากไฟล์ผลงานถูกต้อง
@@ -41,7 +41,7 @@ const Upload = () => {
 
             if(!allowedImg.exec(file.name)){
                 e.target.value = ''
-                setImgError('รูปภาพต้องเป็นไฟล์นามสกุล .png, .jpg, หรือ .jpeg เท่านั้น');  
+                setImgError('*รูปภาพต้องเป็นไฟล์นามสกุล .png, .jpg, หรือ .jpeg เท่านั้น');  
             }else{
                 setfile_img(e.target.files[0]);
                 setImgError(''); // ล้างข้อความผิดพลาดหากรูปภาพถูกต้อง
@@ -59,66 +59,54 @@ const Upload = () => {
     const handleSubmit = async (e) =>{
         e.preventDefault()
 
-        setProjectNameError(!project_name ? '*กรุณากรอกชื่อผลงาน' : '');
-        setAbstractError(!project_abstract ? '*กรุณากรอกบทคัดย่อ' : '');
-        setImgError(!project_img_file ? '*กรุณาอัปโหลดรูปภาพประกอบ' : '');
-        setPdfError(!project_pdf_file ? '*กรุณาอัปโหลดไฟล์ผลงาน' : '');
-        
-        if (!project_turnitin) {
-            setTurnitinError('กรุณากรอกผล Turnitin');
-        } else {
-            setTurnitinError('');
-        }
+        if (!project_name || !project_abstract || !category_id || !project_turnitin || !project_img_file || !project_pdf_file) {
+            setProjectNameError(!project_name ? '*กรุณากรอกชื่อผลงาน' : '');
+            setAbstractError(!project_abstract ? '*กรุณากรอกบทคัดย่อ' : '');
+            setImgError(!project_img_file ? '*กรุณาอัปโหลดรูปภาพประกอบ' : '');
+            setPdfError(!project_pdf_file ? '*กรุณาอัปโหลดไฟล์ผลงาน' : '');
+            setCategoryError(!category_id ? '*กรุณาเลือกหมวดหมู่' : '');
 
-        if (project_turnitin > 100) {
-            setTurnitinError('ค่า Turnitin ต้องไม่เกิน 100');
-            return;
-        }
-        
-        if(!category_id){
-            setCategoryError('กรุณาเลือกหมวดหมู่');
-          } else{
-                setCategoryError('');
-                const data = new FormData()
-                data.append('student_id',user.student_id)
-                data.append('project_name',project_name)
-                data.append('project_abstract',project_abstract)
-                data.append('project_turnitin',project_turnitin)
-                data.append('project_img_file',project_img_file)
-                data.append('project_pdf_file',project_pdf_file)
-                data.append('category_id',category_id)
-
-                if(data){
-                await swal.fire({
-                    title: 'คุณต้องการบันทึกหรือไม่!',
-                    text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
-                    icon: 'question',
-                    confirmButtonText: 'ตกลง',
-                    cancelButtonText: 'ยกเลิก',
-                    showCancelButton : true,
-                    preConfirm: async ()=>{
-                        try {
-                            await axios.post('http://localhost:3000/api/Post/create',data,{
-                                headers : {
-                                    "Content-Type": "multipart/form-data",
-                                }
-                            })
-                            await swal.fire({
-                            title: 'บันทึก Project เสร็จสิ้น',
-                            text: 'ทุกคนจะเห็น project ของคุณได้ก็ต่อเมื่ออาจารย์ที่ปรึกษา Approve ให้',
-                            icon: 'success',
-                            confirmButtonText: 'ตกลง',
-                            showCancelButton : false,
-                            timer: 1200
-                            })
-                            window.location = ("/")
-                        } catch (error) {
-                            console.error("Error:",error)
-                        }
-                    }});
-                } else{
-                    swal.showValidationMessage('โปรดใส่ข้อมูลให้ครบถ้วน !')
-                }
+        } else{
+            const data = new FormData()
+            data.append('student_id',user.student_id)
+            data.append('project_name',project_name)
+            data.append('project_abstract',project_abstract)
+            data.append('project_turnitin',project_turnitin)
+            data.append('project_img_file',project_img_file)
+            data.append('project_pdf_file',project_pdf_file)
+            data.append('category_id',category_id)
+    
+            if(data){
+            await swal.fire({
+                title: 'คุณต้องการบันทึกหรือไม่!',
+                text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
+                icon: 'question',
+                confirmButtonText: 'ตกลง',
+                cancelButtonText: 'ยกเลิก',
+                showCancelButton : true,
+                preConfirm: async ()=>{
+                    try {
+                        await axios.post('http://localhost:3000/api/Post/create',data,{
+                            headers : {
+                                "Content-Type": "multipart/form-data",
+                            }
+                        })
+                        await swal.fire({
+                        title: 'บันทึก Project เสร็จสิ้น',
+                        text: 'ทุกคนจะเห็น project ของคุณได้ก็ต่อเมื่ออาจารย์ที่ปรึกษา Approve ให้',
+                        icon: 'success',
+                        confirmButtonText: 'ตกลง',
+                        showCancelButton : false,
+                        timer: 1200
+                        })
+                        window.location = ("/")
+                    } catch (error) {
+                        console.error("Error:",error)
+                    }
+                }});
+            } else{
+                swal.showValidationMessage('โปรดใส่ข้อมูลให้ครบถ้วน !')
+            }
         }
     }
 
@@ -175,15 +163,27 @@ const Upload = () => {
                                     type='number'
                                     className='inputsub turnitin'
                                     onChange={(e)=> {
-                                        setTurnitin(e.target.value);
-                                        setTurnitinError('');
+                                        const inputValue = e.target.value;
+
+                                        if (inputValue >= 0 && inputValue <= 100) {
+                                            setTurnitin(inputValue)
+                                            setTurnitinError('')
+                                        } else {
+                                            setTurnitinError('*ค่า turnitin ต้องอยู่ในช่วง 0 - 100')
+                                        }
+                                        
                                     }}          
                                     placeholder='ข้อมูล turnitin 0 - 100'
                                 />
-                                {turnitinError && <div className='error-message'>{turnitinError}</div>}
-                                <p className='lb-p'><span>*หมายเหตุ</span> : เรียนรู้เพิ่มเติมเกี่ยวกับ turnitin เพิ่มเติมได้
-                                 <a className='link LearningHere' target='blank' href='https://w1.med.cmu.ac.th/library/files/Manual_Turnitin-for-Student.pdf'>ที่นี่</a>
-                                </p>
+                                { 
+                                    turnitinError === '' ? (
+                                        <p className='lb-p'><span>*หมายเหตุ</span> : เรียนรู้เพิ่มเติมเกี่ยวกับ turnitin เพิ่มเติมได้
+                                            <a className='link LearningHere' target='blank' href='https://w1.med.cmu.ac.th/library/files/Manual_Turnitin-for-Student.pdf'>ที่นี่</a>
+                                        </p>
+                                    ) : (                                    
+                                        turnitinError && <div className='error-message'>{turnitinError}</div>
+                                    )
+                                }
                             </div>
                         </div>
                         <div className='input-sub-cat-submit'>
