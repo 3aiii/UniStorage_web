@@ -9,11 +9,21 @@
 .User-info-admin{
     display: flex;
     justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.interactive-Spage-AdminDash{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #DEDEDE;
+    border-bottom: 1px solid #DEDEDE;
+    padding: 10px 0px;
 }
 
 .interactive-view-cat-AdminDash{
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .interactive-p{

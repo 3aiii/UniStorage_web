@@ -116,9 +116,16 @@ const Spage = () => {
     setIsFavorited(isAlreadyFavorited)
     window.location.reload()
   }
+
+  // FAVORITE USER 
+  const userfavorite = async () => {
+    const res = await axios.get(`http://localhost:3000/api/Post/getfavorite/${user.student_id}`)
+    setFavorite(res.data.data)
+  }
   
   useEffect(()=>{
     fecthSinglePost()
+    userfavorite()
   },[location])
   
   return (

@@ -15,6 +15,7 @@ import AdminEditUser from "./pages/adminEditUser/AdminEditUser";
 import AdminSingleEditUser from "./pages/adminSingleEditUser/AdminSingleEditUser";
 import LoginAdmin from "./pages/adminLogin/LoginAdmin";
 import { useSelector } from "react-redux";
+import Mypost from "./pages/mypost/Mypost";
 
 function App() {
   const { isLoggedIn } = useSelector((state)=> state.auth)
@@ -41,6 +42,10 @@ function App() {
         <Route
           path='/upload'
           element={isLoggedIn ? <Upload/> : <Login/>}
+        />
+        <Route
+          path='/mypost'
+          element={isLoggedIn ? <Mypost/> : <Login/>}
         />
         <Route
           path='/singlePage/:id'

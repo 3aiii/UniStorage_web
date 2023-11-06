@@ -1,11 +1,9 @@
-import { useLocation } from 'react-router-dom'
 import SideBarTierList from '../SideBarTierList/SideBarTierList'
 import './SideBar.css'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 const SideBar = () => {
-  const location = useLocation().pathname.split('/')[2]
   const [singlePost,setSinglPost] = useState([])
 
   const feacthPostTierList = async () =>{
@@ -20,11 +18,14 @@ const SideBar = () => {
   return (
     <div className='Container-SideBar'>
       <div className='Main-Box-SideBar'>
-        <h1 className='h1-TopFive'>TOP 5 MOST VIEWED</h1>
+        <h1 className='h1-TopFive'>
+          {/* <i className="IconRank fa-solid fa-ranking-star"></i>  */}
+          TOP 5 MOST VIEWED
+        </h1>
         <div className='TierList-box'>
           {
             singlePost.map((post)=>(
-              <SideBarTierList post = {post}/>
+              <SideBarTierList post = {post} key={post.project_id}/>
             ))
           }
         </div>

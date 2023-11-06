@@ -6,10 +6,11 @@ import './Home.css'
 
 const Home = () => {
   const [search, setSearch] = useState('');
+  const [isSearchBoxVisible,setSearchBoxVisible] = useState(true)
 
   return (
     <div className='Container-Home'>
-        <NavBar onSearchChange={setSearch} />
+        <NavBar onSearchChange={setSearch} isSearchBoxVisible ={isSearchBoxVisible}/>
         <div className='Main-Home'>
           <Posts search={search} />  
           <SideBar/>

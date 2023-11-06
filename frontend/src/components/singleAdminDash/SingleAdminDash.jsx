@@ -125,14 +125,14 @@ const HandleReject = async () =>{
               singlePost.project_turnitin > 20 && (
                 <p className='turitin-upper-p'>
                     <i class="IconDanger fa-solid fa-triangle-exclamation"></i>
-                        ค่า turnitin = {singlePost.project_turnitin} มากกว่า 20 ฉะนั้น กรุณาตรวจสอบเพื่อความมั่นใจอีกครั้ง 
+                      ค่า turnitin = {singlePost.project_turnitin} มากกว่า 20 ฉะนั้น กรุณาตรวจสอบเพื่อความมั่นใจอีกครั้ง 
                     <i class="IconDanger fa-solid fa-triangle-exclamation"></i>
                 </p>
               )   
             }
           </div>
         </div>
-        <div className='interactive-Spage'>
+        <div className='interactive-Spage-AdminDash'>
           <div className='interactive-view-cat-AdminDash'>
             <button className='link Category-btn-Spage'>
               {singlePost.category_name}

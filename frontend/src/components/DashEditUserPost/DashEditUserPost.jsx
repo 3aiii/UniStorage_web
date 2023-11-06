@@ -7,7 +7,7 @@ const DashEditUserPost = ({deup}) => {
     <div className='container-DashEditUserPost'>
         <div className='Main-DashEditUserPost'>
             <img
-                src='https://i.scdn.co/image/ab67706c0000da8480299819e2aa1ff76633012d'
+                src='/src/assets/User.png'
                 alt='img-DashEditUserPost'
                 className='img-DashEditUserPost'
             />

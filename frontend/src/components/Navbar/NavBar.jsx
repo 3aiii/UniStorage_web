@@ -6,12 +6,11 @@ import { logout } from '../../context/authSlice';
 import { useState } from 'react';
 import { setSearch } from '../../context/searchSlice.js'
 
-const NavBar = () => {
+const NavBar = ({isSearchBoxVisible}) => {
 
-    // const [search,setSearch] = useState('')
     const dispatch = useDispatch();
     const { user } = useSelector((state)=> state.auth)
-
+ 
     // LOGOUT BUTTON
     const HandleLogout = async () =>{
         await swal.fire({
@@ -43,21 +42,24 @@ const NavBar = () => {
                             className='Img-NavBar'
                         />
                     </Link>
-                    <div className='Search-Box'>
-                        <i className="IconSearchNavBar fa-solid fa-magnifying-glass"></i>
-                        <input
-                            type='text'
-                            className='search-NavBar'
-                            placeholder='Search'
-                            onChange={(e)=>{
-                                handleSearchChange(e.target.value)    
-                            }}
-                        />
-                    </div>
+                    {
+                        isSearchBoxVisible && (
+                            <div className='Search-Box'>
+                                <i className="IconSearchNavBar fa-solid fa-magnifying-glass"></i>
+                                <input
+                                    type='text'
+                                    className='search-NavBar'
+                                    placeholder='Search'
+                                    onChange={(e)=>{
+                                        handleSearchChange(e.target.value)    
+                                    }}
+                                />
+                            </div>
+                        )
+                    }
                 </div>
                 <div className='feature-NavBar'>
                     <Link to='/upload' className='link upload-NavBar'>
-                        {/* <i class="fa-solid fa-file-import"></i> */}
                         <img
                             src='/src/assets/Paper-Upload.svg'
                             className='Img-Icon-Upload'
@@ -65,8 +67,13 @@ const NavBar = () => {
                         />
                         Upload
                     </Link>
+                    <Link to='/mypost' className='link mypost-NavBar'>
+                        <i class="IconMypost fa-regular fa-newspaper"></i>
+                        <p>My Post</p>
+                    </Link>
                     <Link to={`/favorite/${user.student_id}`} className='link Favorite-NavBar'>
                         <i className="IconFavorite fa-solid fa-heart"></i>
+                        
                     </Link>
                     <div className='Profile-NavBar'>
                         <img

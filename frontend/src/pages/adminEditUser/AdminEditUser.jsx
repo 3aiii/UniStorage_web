@@ -48,7 +48,6 @@ const AdminEditUser = () => {
                             value={search}
                             onChange={(e)=> setSearch(e.target.value)}
                         />
-                        {/* <button type='submit'>dwdw</button> */}
                     </form>
                 </div>
                 <div className='info-AdminEditUser'>
