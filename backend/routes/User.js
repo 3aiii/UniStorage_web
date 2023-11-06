@@ -55,7 +55,7 @@ router.get('/:id',async(req,res)=>{
     }
 )
 
-// UPDATE POST
+// UPDATE USER
 router.put('/update',async(req,res)=>{
     const { student_id,student_username,student_password,student_fname,student_lname,student_email } = req.body
     let mysql = `UPDATE student

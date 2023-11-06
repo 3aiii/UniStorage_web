@@ -124,8 +124,7 @@ const Upload = () => {
                             onChange={(e)=> {
                                 setName(e.target.value);
                                 setProjectNameError('');
-                            }}
-                    
+                            }}                    
                         />
                         {projectNameError && <div className='error-message'>{projectNameError}</div>}                        
                         <label className='lb Abstract'>บทคัดย่อ</label>
@@ -190,7 +189,6 @@ const Upload = () => {
                             <div className='input-options'>
                                 <label className='lb-cat'>หมวดหมู่</label>
                                 <div className='box-select'>
-                                    {/* {console.log(category_id)} */}
                                     <select value={category_id} 
                                         className='inputsub cat' 
                                         placeholder='Select your category please' 

@@ -89,15 +89,38 @@ router.post('/create', Upload,async (req,res)=>{
 })
 
 // UPDATE POST
-router.put('/update',async (req,res)=>{
-    const { project_id,project_name ,project_abstract } = req.body
-    // const project_img_file = req.files.project_img_file[0].filename; 
-    // const project_pdf_file = req.files.project_pdf_file[0].filename; 
-    // const project_pdf_path = req.files.project_pdf_file[0].path;
+router.put('/update',Upload,async (req,res)=>{
+    const { project_id,project_name ,project_abstract,category_id } = req.body
+    let project_img_file, project_pdf_file, project_pdf_path;
 
-    let mysql = `UPDATE project SET project_name = ?, project_abstract = ? WHERE project_id = ? `
+    if (req.files.project_img_file) {
+        project_img_file = req.files.project_img_file[0].filename;
+    }
 
-    const params = [project_name,project_abstract,project_id]
+    if (req.files.project_pdf_file) {
+        project_pdf_file = req.files.project_pdf_file[0].filename;
+        project_pdf_path = req.files.project_pdf_file[0].path;
+    }
+
+    let mysql = `UPDATE project SET 
+                        project_name = ?, 
+                        project_abstract = ?,
+                        category_id = ?`;
+    
+    const params = [project_name, project_abstract,category_id];
+
+    if (project_img_file) {
+        mysql += ', project_img_file = ?';
+        params.push(project_img_file);
+    }
+
+    if (project_pdf_file) {
+        mysql += ', project_pdf_file = ?, project_pdf_path = ?';
+        params.push(project_pdf_file, project_pdf_path);
+    }
+
+    mysql += ' WHERE project_id = ?';
+    params.push(project_id);
 
     try {
         conn.query(

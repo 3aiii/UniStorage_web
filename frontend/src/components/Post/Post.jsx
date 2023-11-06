@@ -15,9 +15,8 @@ const Post = ({post}) => {
   const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
   const [isFavorited, setIsFavorited] = useState(false); 
   const [Favorite,setFavorite] = useState([])
-  // console.log(isFavorited);
   
-  // HANDLE VIWER 
+  // HANDLE VIWER  
   const HandleViewer = async() =>{
     await axios.put(`http://localhost:3000/api/Post/singlePage/${post.project_id}`)
   }
@@ -35,6 +34,7 @@ const Post = ({post}) => {
     window.location.reload()
   }
 
+  // FAVORITE USER 
   const userfavorite = async () => {
     const res = await axios.get(`http://localhost:3000/api/Post/getfavorite/${user.student_id}`)
     setFavorite(res.data.data)
@@ -49,7 +49,7 @@ const Post = ({post}) => {
       <div className='Main-Box-Post'>
         <div className='User-Date-Post'>
           <img
-            src='https://www.jollyboxdesign.com/wp-content/uploads/2021/08/Administrator.png'
+            src='/src/assets/User.png'
             alt='Img-User-Post'
             className='Img-User-Post'
           />
