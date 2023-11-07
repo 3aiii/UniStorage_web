@@ -13,7 +13,9 @@ const Spage = () => {
   const [Favorite,setFavorite] = useState([])
   const { user } = useSelector((state)=> state.auth)
   const PF = "http://localhost:3000/img/"
-  
+  const [Loading,setIsLoading] = useState(true)
+  let ToggleClassFavorite = Favorite.some(e => e.project_id === singlePost.project_id) ? '-active' : ''
+
   // UPDATE PARAMETER
   const [Title,setTitle] = useState('')
   const [Abstract,setAbstract] = useState('')
@@ -62,6 +64,9 @@ const Spage = () => {
               showCancelButton : false,
               timer: 1200
               })
+
+              setIsLoading(false);
+
             } catch (error) {
               console.error("Error:",error)
             }
@@ -101,6 +106,8 @@ const Spage = () => {
     const options = { year: 'numeric', month: 'long', day: 'numeric'};
     const formattedDate = postDate.toLocaleDateString('en-US', options);
     setFormattedDate(formattedDate);
+    setIsLoading(false);
+
   }
 
   // FAVORITE BUTTON
@@ -140,7 +147,7 @@ const Spage = () => {
                           className='input-h1-update' 
                           onChange={(e)=>setTitle(e.target.value)}/> : 
               (
-                singlePost.project_name
+                singlePost.project_name                
               )
             }
           </h1>
@@ -225,7 +232,10 @@ const Spage = () => {
                   )           
                 ) 
               }
-              <button className='favorite-btn' onClick={favorite}>
+              <button 
+                className={`favorite-btn${ToggleClassFavorite}`}             
+                onClick={favorite}
+              >
                 <i className="IconNoneFavorite fa-solid fa-heart" id='IconFav'></i>
               </button>
             </div>

@@ -136,6 +136,10 @@
     color: #FF7F7F;
 }
 
+.favorite-btn-active:hover{
+    color: #fff;
+}
+
 .favorite-btn:hover{
     color: #FF7F7F;
 }

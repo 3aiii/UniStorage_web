@@ -13,7 +13,7 @@ const Post = ({post}) => {
   const formattedDate = postDate.toLocaleDateString('en-US', options);
 
   const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
-  const [isFavorited, setIsFavorited] = useState(false); 
+  const [isFavorited,setIsFavorited] = useState(false); 
   const [Favorite,setFavorite] = useState([])
   
   // HANDLE VIWER  
@@ -24,13 +24,11 @@ const Post = ({post}) => {
   // FAVORITE BUTTON
   const favorite = async () => {
     const isAlreadyFavorited = Favorite.some(item => item.student_id === post.student_id && item.project_id === post.project_id);
-
     if (isAlreadyFavorited){
       await axios.delete(`http://localhost:3000/api/Post/favorite_delete/${user.student_id}/${post.project_id}`)
     } else {
       await axios.post(`http://localhost:3000/api/Post/favorite`,{ student_id: user.student_id, project_id: post.project_id });
     }
-    setIsFavorited(isAlreadyFavorited)
     window.location.reload()
   }
 
@@ -39,10 +37,12 @@ const Post = ({post}) => {
     const res = await axios.get(`http://localhost:3000/api/Post/getfavorite/${user.student_id}`)
     setFavorite(res.data.data)
   }
+
+  let ToggleClassFavorite = Favorite.some(e => e.project_id === post.project_id) ? '-active' : ''
   
   useEffect(() => {
     userfavorite();
-  }, []);
+  },[]);
 
   return (
     <div className='Container-Post' key={post.project_id}>
@@ -90,7 +90,14 @@ const Post = ({post}) => {
               {post.project_viewer}
             </span>
           </div>
-          <button className={`favorite-btn`} onClick={favorite}>
+          <button 
+            className={`favorite-btn${ToggleClassFavorite}`}             
+            onClick={()=>{
+              favorite()
+              setIsFavorited(!isFavorited); 
+
+            }}
+          >
             <i className="IconNoneFavorite fa-solid fa-heart" id='IconFav'></i>
           </button>
         </div>

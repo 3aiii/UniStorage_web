@@ -8,11 +8,10 @@ router.get('/getpost',async(req,res)=>{
 
     let params = []
     let mysql = `SELECT * FROM category 
-    JOIN project ON category.category_id = project.category_id
-    JOIN student ON project.student_id = student.student_id  ORDER BY project_id`
+                JOIN project ON category.category_id = project.category_id
+                JOIN student ON project.student_id = student.student_id  ORDER BY project_id`
     
     if(search){
-        // console.log('in searh : ',search);
         mysql = `SELECT * FROM category 
             JOIN project ON category.category_id = project.category_id
             JOIN student ON project.student_id = student.student_id WHERE project.project_name LIKE ?`

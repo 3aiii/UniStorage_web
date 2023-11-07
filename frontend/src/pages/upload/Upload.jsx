@@ -197,7 +197,7 @@ const Upload = () => {
                                             setCategoryError('');
                                         }}>
                                         
-                                        <option value='0'>กรุณาเลือก</option>
+                                        <option value=''>กรุณาเลือก</option>
                                         <option value='1'>Network</option>
                                         <option value='2'>Multimedia</option>
                                         <option value='3'>Artificial Intelligence</option>

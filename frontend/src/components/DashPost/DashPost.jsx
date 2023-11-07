@@ -27,7 +27,7 @@ const DashPost = ({DashPost}) => {
                             DashPost.project_turnitin > 20 && (
                                 <p className='turitin-upper-p'>
                                     <i class="IconDanger fa-solid fa-triangle-exclamation"></i>
-                                        ค่า turnitin = {DashPost.project_turnitin} มากกว่า 20 ฉะนั้น กรุณาตรวจสอบเพื่อความมั่นใจอีกครั้ง 
+                                        ค่า turnitin = {DashPost.project_turnitin} กรุณาตรวจสอบเพื่อความมั่นใจอีกครั้ง 
                                     <i class="IconDanger fa-solid fa-triangle-exclamation"></i>
                                 </p>
                             )   

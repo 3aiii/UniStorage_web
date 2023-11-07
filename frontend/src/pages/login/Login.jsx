@@ -55,7 +55,7 @@ const Login = () => {
                 src='/src/assets/logoSDU/Main-logo.png'
                 alt='Main-logo-SDU'
                 className='Main-logo-img'
-                />
+              />
             </div>
             <form onSubmit={handleSubmit}>
               <div className='box-input-login'>
