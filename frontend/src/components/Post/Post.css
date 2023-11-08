@@ -143,3 +143,13 @@
 .favorite-btn:hover{
     color: #FF7F7F;
 }
+
+.IconNewPost{
+    color: rgb(235, 235, 41);
+    margin-right: 5px;
+}
+
+.New-Post{
+    color: #8C8C8C;
+    font-weight: 400;
+}

@@ -9,7 +9,6 @@ const Posts = () => {
   const [activeMenu, setActiveMenu] = useState(0);
   const [allPost,setAllPost] = useState([])
   const [Cat,setCat] = useState([])
-  // const [search, setSearch] = useState('');
   const search  = useSelector((state) => state.search);
   
   // FECTHPOST API

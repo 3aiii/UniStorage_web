@@ -8,19 +8,20 @@ const Post = ({post}) => {
   const PF = "http://localhost:3000/img/"
   const { user } = useSelector((state)=> state.auth)
 
-  const postDate = new Date(post.project_create);
-  const options = { year: 'numeric', month: 'long', day: 'numeric'};
-  const formattedDate = postDate.toLocaleDateString('en-US', options);
-
+  
   const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
   const [isFavorited,setIsFavorited] = useState(false); 
   const [Favorite,setFavorite] = useState([])
+  
+  const postDate = new Date(post.project_create);
+  const options = { year: 'numeric', month: 'long', day: 'numeric'};
+  const formattedDate = postDate.toLocaleDateString('en-US', options);
   
   // HANDLE VIWER  
   const HandleViewer = async() =>{
     await axios.put(`http://localhost:3000/api/Post/singlePage/${post.project_id}`)
   }
-
+  
   // FAVORITE BUTTON
   const favorite = async () => {
     const isAlreadyFavorited = Favorite.some(item => item.student_id === post.student_id && item.project_id === post.project_id);
@@ -31,13 +32,17 @@ const Post = ({post}) => {
     }
     window.location.reload()
   }
-
+  
+  const currentDate = new Date();
+  const timeDifference = currentDate - postDate;
+  const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  
   // FAVORITE USER 
   const userfavorite = async () => {
     const res = await axios.get(`http://localhost:3000/api/Post/getfavorite/${user.student_id}`)
     setFavorite(res.data.data)
   }
-
+  
   let ToggleClassFavorite = Favorite.some(e => e.project_id === post.project_id) ? '-active' : ''
   
   useEffect(() => {
@@ -60,6 +65,17 @@ const Post = ({post}) => {
           <span className='span-Post'>
             {formattedDate}
           </span>
+          {/* <div>{daysPassed}</div> */}
+          {
+            daysPassed <= 1 ? (
+              <div className='New-Post'>
+                <i class="IconNewPost fa-solid fa-star"></i>
+                New Post
+              </div>
+            ) : (
+              <div></div>
+            )
+          }
         </div>
         <div className='Info-Post'>
           <div className='Info-H1AndP'>
