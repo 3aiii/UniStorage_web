@@ -33,9 +33,9 @@ const Post = ({post}) => {
     window.location.reload()
   }
   
-  const currentDate = new Date();
-  const timeDifference = currentDate - postDate;
-  const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  // const currentDate = new Date();
+  // const timeDifference = currentDate - postDate;
+  // const daysPassed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   
   // FAVORITE USER 
   const userfavorite = async () => {
@@ -65,8 +65,7 @@ const Post = ({post}) => {
           <span className='span-Post'>
             {formattedDate}
           </span>
-          {/* <div>{daysPassed}</div> */}
-          {
+          {/* {
             daysPassed <= 1 ? (
               <div className='New-Post'>
                 <i class="IconNewPost fa-solid fa-star"></i>
@@ -75,7 +74,7 @@ const Post = ({post}) => {
             ) : (
               <div></div>
             )
-          }
+          } */}
         </div>
         <div className='Info-Post'>
           <div className='Info-H1AndP'>
@@ -96,7 +95,7 @@ const Post = ({post}) => {
         </div>
         <div className='Viewed-Post'>
           <div className='Viewed-btnAndView-Post'>
-            <Link to={'/'} className='link Category-btn-Post'>
+            <Link to={`/CategoryPage/${post.category_id}`} className='link Category-btn-Post'>
               { 
                 keywords[post.category_id - 1]
               }
@@ -110,8 +109,6 @@ const Post = ({post}) => {
             className={`favorite-btn${ToggleClassFavorite}`}             
             onClick={()=>{
               favorite()
-              setIsFavorited(!isFavorited); 
-
             }}
           >
             <i className="IconNoneFavorite fa-solid fa-heart" id='IconFav'></i>

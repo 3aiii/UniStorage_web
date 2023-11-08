@@ -5,8 +5,8 @@ import './Spost.css'
 const Spost = () => {
   return (
     <div className='container-Spost'>
-        <NavBar/>
-        <Spage/>
+      <NavBar/>
+      <Spage/>
     </div>
   )
 }

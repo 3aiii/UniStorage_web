@@ -26,7 +26,7 @@ const Posts = () => {
       setAllPost(res.data.data);
 
     } else {
-      const res = await axios.get(`http://localhost:3000/api/Cat/${categoryId}`);
+      const res = await axios.get(`http://localhost:3000/api/Cat/CategoryPage/${categoryId}`);
       setAllPost(res.data.data);
     }
   }

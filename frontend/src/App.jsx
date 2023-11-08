@@ -16,6 +16,7 @@ import AdminSingleEditUser from "./pages/adminSingleEditUser/AdminSingleEditUser
 import LoginAdmin from "./pages/adminLogin/LoginAdmin";
 import { useSelector } from "react-redux";
 import Mypost from "./pages/mypost/Mypost";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 
 function App() {
   const { isLoggedIn } = useSelector((state)=> state.auth)
@@ -70,6 +71,10 @@ function App() {
         <Route
           path='/adminSingleEditUser/:id'
           element={isLoggedIn ? <AdminSingleEditUser/> :<LoginAdmin/>}
+        />
+        <Route
+          path='/CategoryPage/:id'
+          element = {isLoggedIn ? <CategoryPage/> : <Login/> }
         />
       </Routes>
     </BrowserRouter>

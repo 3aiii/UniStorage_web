@@ -4,6 +4,7 @@ import { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import swal from 'sweetalert2'
+import {Link} from "react-router-dom"; 
 
 const Spage = () => {
   const location = useLocation().pathname.split('/')[2]
@@ -170,15 +171,14 @@ const Spage = () => {
                     defaultValue={singlePost.category_id}
                     onChange={(e)=> setCategory(e.target.value)}
                   >
-                      <option value='1'>Network</option>
-                      <option value='2'>Multimedia</option>
-                      <option value='3'>Artificial Intelligence</option>
+                    <option value='1'>Network</option>
+                    <option value='2'>Multimedia</option>
+                    <option value='3'>Artificial Intelligence</option>
                   </select>
                 ) : (
-                  <div className='link Category-btn-Spage'>
+                  <Link to={`/CategoryPage/${singlePost.category_id}`} className='link Category-btn-Spage' >
                     {singlePost.category_name}
-                  </div>
-
+                  </Link>
                 )
               }
               <span className='span-view-Spost'>
