@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import swal from 'sweetalert2'
 import {Link} from "react-router-dom"; 
+import FooterPage from '../FooterPage/FooterPage'
 
 const Spage = () => {
   const location = useLocation().pathname.split('/')[2]
@@ -24,6 +25,7 @@ const Spage = () => {
   const [Category,setCategory] = useState(singlePost.category_id)
   const [project_img_file,setfile_img] = useState(null)
   const [project_pdf_file,setfile_pdf] = useState(null)
+  const [footer,setFooter] = useState([])
 
   // EDIT PARAMETER
   const [Image,setImage] = useState(null)
@@ -108,7 +110,6 @@ const Spage = () => {
     const formattedDate = postDate.toLocaleDateString('en-US', options);
     setFormattedDate(formattedDate);
     setIsLoading(false);
-
   }
 
   // FAVORITE BUTTON
@@ -128,9 +129,11 @@ const Spage = () => {
   // FAVORITE USER 
   const userfavorite = async () => {
     const res = await axios.get(`http://localhost:3000/api/Post/getfavorite/${user.student_id}`)
+    const res_2 = await axios.get(`http://localhost:3000/api/Post/random/randProject`)
     setFavorite(res.data.data)
+    setFooter(res_2.data.data)
   }
-  
+
   useEffect(()=>{
     fecthSinglePost()
     userfavorite()
@@ -304,6 +307,13 @@ const Spage = () => {
               </div>
             )
           }
+        <div className='footer-project'>
+          {
+            footer.map((p)=>(
+              <FooterPage post ={p} key={p.project_id}/>
+            ))
+          }
+        </div>
       </div>
     </div>
   )

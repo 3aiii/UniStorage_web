@@ -12,8 +12,22 @@ const CategorySingle = () => {
     const [TrendCat,setTrendCat] = useState([])
     const ActivePost = CatSingle.filter(p=> p.project_status === 'Active')
     const keywords = ["Network", "Multimedia", "Artificial Intelligence"];
+    // Count Viewer in Category
+    let sum = 0
+    let Sum_viewer = CatSingle.map((p)=>(
+        p.project_status === 'Active' && (p.project_viewer)
+    ))
 
- 
+    const bouncer = (array) => {
+        return array.filter(item => item !== false);
+    }
+    
+    let deleteFalseInArray = bouncer(Sum_viewer)
+    
+    deleteFalseInArray.forEach(num =>{
+        sum += num
+    })
+
     const FecthPost_Category = async () =>{
         const res = await axios.get(`http://localhost:3000/api/Cat/CategoryPage/${location}`)
         setCatSingle(res.data.data)
@@ -38,14 +52,20 @@ const CategorySingle = () => {
                     <Link to={`/CategoryPage/3`} className='CategorySingle-li'>Artificial Intelligence</Link>
                 </ul>
                 <h1 className='CategorySingle-h1'>Result for <span className='Span-topic'>{keywords[location - 1]}</span></h1>
-                <p className='CategorySingle-count'>จำนวณผลงานทั้งหมด <span>{ActivePost.length}</span> ผลงาน</p>
+                <p className='CategorySingle-count'>
+                    จำนวณผลงานทั้งหมด 
+                    <span> {ActivePost.length} </span> 
+                    ผลงาน
+                    -
+                    ยอดวิวทั้งหมด {sum} viewer
+                </p>
             </div>
             <div className='Categorysingle-sub-info'>
                 <p className='Categorysingle-Recommended'><i className="IconRocket fa-solid fa-rocket"></i>Recommended Network</p>
                 <div className='Categorysingle-post'>
                     {
                         TrendCat.map((p)=>(
-                            <CategoryPostMain post={p}/>
+                            <CategoryPostMain post={p} key={p.project_id}/>
                         ))
                     }
                 </div>

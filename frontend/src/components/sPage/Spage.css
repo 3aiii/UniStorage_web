@@ -298,3 +298,10 @@
 .input-category-update:focus{
     outline: none;
 }
+
+.footer-project{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

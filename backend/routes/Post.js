@@ -360,5 +360,30 @@ router.get('/mypost/:id',async(req,res)=>{
     }
 )
 
+// RANDOM POST
+router.get('/random/randProject',async (req,res)=>{
+    let mysql = `SELECT * FROM category 
+                JOIN project ON category.category_id = project.category_id
+                JOIN student ON project.student_id = student.student_id ORDER BY RAND() LIMIT 3`
+    try {
+        conn.query(
+            mysql,
+            [],
+            (err,result,field)=>{
+                if(err){
+                    res.json({status : 'error' , message : err})
+                } else {
+                    if(result.length === 0){
+                        res.json({message : 'Array ว่าง'})
+                    } else{
+                        res.json({status : 'success' , data : result})
+                    }
+                }
+            }
+        )
+    } catch (error) {
+        res.status(500).json({status : 'error',message : error})            
+    }
+})
 
 module.exports = router

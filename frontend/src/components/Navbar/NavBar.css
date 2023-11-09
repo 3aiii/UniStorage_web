@@ -23,6 +23,7 @@
 .Img-NavBar{
     width: 216px;
     height: 52px;
+    outline: none;
 }
 
 .Search-Box{

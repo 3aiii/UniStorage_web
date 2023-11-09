@@ -65,16 +65,16 @@ router.post('/login',async (req,res)=>{
     }
 })
 
-// AUTHEN
-router.post('/authen',jsonParser,async(req,res)=>{
-    try {
-        const token = req.headers('Authorization').split(' ')[1]
-        var decoded = jwt.verify(token, secret);
-        res.json({status : 'ok' ,decoded})        
-    } catch (error) {
-        res.json({status : 'error' ,message : error.message})                
-    }
-})
+// // AUTHEN
+// router.post('/authen',jsonParser,async(req,res)=>{
+//     try {
+//         const token = req.headers('Authorization').split(' ')[1]
+//         var decoded = jwt.verify(token, secret);
+//         res.json({status : 'ok' ,decoded})        
+//     } catch (error) {
+//         res.json({status : 'error' ,message : error.message})                
+//     }
+// })
 
 // LOGIN ADMIN
 router.post('/loginadmin',async (req,res)=>{
