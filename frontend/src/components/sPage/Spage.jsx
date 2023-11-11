@@ -133,7 +133,7 @@ const Spage = () => {
     setFavorite(res.data.data)
     setFooter(res_2.data.data)
   }
-
+  // console.log(footer);
   useEffect(()=>{
     fecthSinglePost()
     userfavorite()
@@ -149,7 +149,9 @@ const Spage = () => {
                           type='text' 
                           defaultValue={singlePost.project_name} 
                           className='input-h1-update' 
-                          onChange={(e)=>setTitle(e.target.value)}/> : 
+                          onChange={(e)=>setTitle(e.target.value)}
+
+                        /> : 
               (
                 singlePost.project_name                
               )
@@ -307,13 +309,27 @@ const Spage = () => {
               </div>
             )
           }
-        <div className='footer-project'>
           {
-            footer.map((p)=>(
-              <FooterPage post ={p} key={p.project_id}/>
-            ))
+            update ? (
+              <p></p>
+            ) : (
+              <>
+                <h1 className='footer-h1'>Recommend Projects</h1>
+                <div className='footer-project'>
+                  {
+                    footer.map((p)=>(
+                      <FooterPage post ={p} key={p.project_id}/>
+                    ))
+                  }
+                </div>
+                <div className='btn-see-more'>
+                  <Link to={'/'} className='link btn-see-more-real'>
+                    See more recommend 
+                  </Link>
+                </div>
+              </>
+            )
           }
-        </div>
       </div>
     </div>
   )

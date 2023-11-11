@@ -12,8 +12,8 @@ const port = 3000
 
 app.use(cors())
 app.use(express.json())
-app.use('/img', express.static(path.join(__dirname, '/img')));
 
+app.use('/img', express.static(path.join(__dirname, '/img')));
 app.use('/api/Auth',auth)
 app.use('/api/Post',post)
 app.use('/api/Cat',cat)

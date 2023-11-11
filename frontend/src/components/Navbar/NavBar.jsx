@@ -49,7 +49,7 @@ const NavBar = ({isSearchBoxVisible}) => {
                                 <input
                                     type='text'
                                     className='search-NavBar'
-                                    placeholder='Search'
+                                    placeholder='Search Something'
                                     onChange={(e)=>{
                                         handleSearchChange(e.target.value)    
                                     }}
@@ -76,11 +76,10 @@ const NavBar = ({isSearchBoxVisible}) => {
                         
                     </Link>
                     <div className='Profile-NavBar'>
-                        <img
-                            src='/src/assets/ph_user-thin.png'
-                            alt='Img-Icon-Profile'
-                            className='Img-Icon-Profile'
-                        />
+                        <div className='icon'>
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <span className='Profile-Name'>{user.student_username}</span>
                     </div>
                     <button onClick={HandleLogout} className='link Logout-NavBar'>
                         <i class="IconLogout fa-solid fa-arrow-right-from-bracket"></i>

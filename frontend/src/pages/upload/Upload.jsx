@@ -55,7 +55,7 @@ const Upload = () => {
     let [pdfError, setPdfError] = useState('');
     let [turnitinError, setTurnitinError] = useState('');
     let [categoryError, setCategoryError] = useState('');
-    
+
     const handleSubmit = async (e) =>{
         e.preventDefault()
 
@@ -63,9 +63,9 @@ const Upload = () => {
             setProjectNameError(!project_name ? '*กรุณากรอกชื่อผลงาน' : '');
             setAbstractError(!project_abstract ? '*กรุณากรอกบทคัดย่อ' : '');
             setImgError(!project_img_file ? '*กรุณาอัปโหลดรูปภาพประกอบ' : '');
+            setTurnitinError(!project_turnitin ? '*กรุณากรอกผล Turnitin' : '')
             setPdfError(!project_pdf_file ? '*กรุณาอัปโหลดไฟล์ผลงาน' : '');
             setCategoryError(!category_id ? '*กรุณาเลือกหมวดหมู่' : '');
-
         } else{
             const data = new FormData()
             data.append('student_id',user.student_id)
@@ -77,7 +77,7 @@ const Upload = () => {
             data.append('category_id',category_id)
     
             if(data){
-            await swal.fire({
+                await swal.fire({
                 title: 'คุณต้องการบันทึกหรือไม่!',
                 text: 'กรุณาตรวจสอบข้อมูลอีกครั้งก่อนกดปุ่มตกลง',
                 icon: 'question',
@@ -163,10 +163,14 @@ const Upload = () => {
                                     className='inputsub turnitin'
                                     onChange={(e)=> {
                                         const inputValue = e.target.value;
+                                        
+                                        if(inputValue === ''){
+                                            setTurnitinError('*กรุณากรอกผล Turnitin')
+                                        }
 
                                         if (inputValue >= 0 && inputValue <= 100) {
                                             setTurnitin(inputValue)
-                                            setTurnitinError('')
+                                            // setTurnitinError('')
                                         } else {
                                             setTurnitinError('*ค่า turnitin ต้องอยู่ในช่วง 0 - 100')
                                         }

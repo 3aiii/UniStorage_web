@@ -9,7 +9,11 @@ const FooterPage = ({post}) => {
     const [FormattedDate, setFormattedDate] = useState('');
     const [Favorite,setFavorite] = useState([])
     const { user } = useSelector((state)=> state.auth)
-
+ 
+    // HANDLE VIWER  
+    const HandleViewer = async() =>{
+        await axios.put(`http://localhost:3000/api/Post/singlePage/${post.project_id}`)
+    }
     // Date Config
     const postDate = new Date(post.project_create);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -18,7 +22,7 @@ const FooterPage = ({post}) => {
     useEffect(() => {
       setFormattedDate(formattedDate);
     }, [formattedDate]);
-    // console.log(FormattedDate);
+
     return (
         <div className='Container-FooterPage'>
             <div className='FooterPage-blog'>
@@ -40,7 +44,7 @@ const FooterPage = ({post}) => {
                     <span className='Date-span'>{FormattedDate}</span>
                 </div>
                 <div className='footer-topic'>
-                    <Link  to={`/singlePage/${post.project_id}`}  className='link CategoryPostMain-Topic'>
+                    <Link  to={`/singlePage/${post.project_id}`} onClick={HandleViewer}  className='link CategoryPostMain-Topic'>
                         <h2 className='CategoryPostMain-h2'>{post.project_name}</h2>
                         <p className='CategoryPostMain-p'>{post.project_abstract}</p>
                     </Link>

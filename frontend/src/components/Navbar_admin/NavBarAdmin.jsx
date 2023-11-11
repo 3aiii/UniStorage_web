@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './NavBarAdmin.css'
 import {Link} from 'react-router-dom'
 import { logout } from '../../context/authSlice';
@@ -6,6 +6,8 @@ import swal from 'sweetalert2';
 
 const NavBarAdmin = () => {
     const dispatch = useDispatch();
+    const { user } = useSelector((state)=> state.auth)
+
     // LOGOUT BUTTON
     const HandleLogout = async () =>{
         await swal.fire({
@@ -35,11 +37,10 @@ const NavBarAdmin = () => {
                 </div>
                 <div className='feature-NavBar'>
                     <div className='Profile-NavBar'>
-                        <img
-                            src='/src/assets/ph_user-thin.png'
-                            alt='Img-Icon-Profile'
-                            className='Img-Icon-Profile'
-                        />
+                        <div className='icon'>
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <span className='Profile-Name'>{user.teacher_username}</span>
                     </div>
                     <button className='link Logout-NavBar' onClick={HandleLogout}>
                         <i class="IconLogout fa-solid fa-arrow-right-from-bracket"></i>

@@ -4,8 +4,6 @@ const bodyParser = require('body-parser')
 const jsonParser = bodyParser.json()
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const jwt = require('jsonwebtoken');
-const secret = 'Login-2023-SE' 
 
 // REGISTER USER
 router.post('/register',jsonParser,async(req,res)=>{
@@ -78,12 +76,12 @@ router.post('/login',async (req,res)=>{
 
 // LOGIN ADMIN
 router.post('/loginadmin',async (req,res)=>{
-    let mysql = `SELECT teacher_id,teacher_username,teacher_password,teacher_fname,teacher_lname FROM teacher WHERE teacher_username = ? `
+    let mysql = `SELECT teacher_id,teacher_username,teacher_password,teacher_fname,teacher_lname FROM teacher WHERE teacher_username = ? AND teacher_password = ?`
 
     try {
         conn.query(
             mysql,
-            [req.body.username],
+            [req.body.username,req.body.password],
             (err,user,field)=>{
                 if(err){
                     res.status(404).send(err); return 

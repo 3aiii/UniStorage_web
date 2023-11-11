@@ -61,7 +61,7 @@
 }
 
 .span-view-Spost{
-    color: #D1D1D1;
+    color: #868686;
     font-size: 18px;
 }
 
@@ -113,13 +113,16 @@
 /* SPAGE INFO */
 .Spage-info{
    display: flex; 
-   margin: 20px 0px;
+   margin: 20px 0px 20px 0px;
    gap: 35px;
+   padding-bottom: 50px;
+   border-bottom: 1px solid #DEDEDE;
+
 }
 
 .Spage-info-img{
-    width: 260px;
-    height: 260px;
+    width: 300px;
+    height: 300px;
     object-fit: contain;
 }
 
@@ -301,7 +304,37 @@
 
 .footer-project{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    border-bottom: 1px solid #DEDEDE;
+    padding: 40px 0px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-h1{
+    font-size: 28px;
+    /* padding-bottom: 20px; */
+}
+
+.btn-see-more{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.btn-see-more-real{
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid #DEDEDE ;
+    /* background: #D9D9D9; */
+    padding: 10px 20px;
+    outline: none;
+    color: #111;
+    transition: 0.5s;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.btn-see-more-real:hover{
+    background: #DEDEDE;
 }

@@ -364,7 +364,7 @@ router.get('/mypost/:id',async(req,res)=>{
 router.get('/random/randProject',async (req,res)=>{
     let mysql = `SELECT * FROM category 
                 JOIN project ON category.category_id = project.category_id
-                JOIN student ON project.student_id = student.student_id ORDER BY RAND() LIMIT 3`
+                JOIN student ON project.student_id = student.student_id WHERE project.project_status = 'Active' ORDER BY RAND() LIMIT 3`
     try {
         conn.query(
             mysql,
