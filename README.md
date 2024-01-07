@@ -8,7 +8,7 @@ the final project in one of my subject, hope you enjoy this code( but maybe you 
 
 **Client:** React, Redux, Pure css
 
-**Server:** Nodejs, Express
+**Server:** Nodejs, Express , Mysql
 
 
 ## Run Locally
