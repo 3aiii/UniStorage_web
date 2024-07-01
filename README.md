@@ -16,7 +16,7 @@ the final project in one of my subject, hope you enjoy this code( but maybe you 
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/3aiii/UniStorage_web.git
 ```
 
 Go to the project directory
